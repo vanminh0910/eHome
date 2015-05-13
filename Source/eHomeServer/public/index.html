@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>eHome System</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper" ng-app="eHomeApp" ng-controller="indexController">
+
+        <!-- Navigation -->
+        
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bell fa-fw"></i> eHome Control Center
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i> Temperature
+                            <span class="pull-right text-muted badge"> {{temp}} </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i> Humidity
+                            <span class="pull-right text-muted badge"> {{humid}} </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i> Battery
+                            <span class="pull-right text-muted badge"> {{voltage}} </span>
+                            </span>
+                        </a>                        
+                    </div>
+                    <!-- /.list-group -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!--<script type="text/javascript" src="http://localhost:8000/socket.io/socket.io.js"></script>-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.8.20/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="js/angular-socket.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <script>
+        /*
+		$(document).ready(function(){
+            alert("OK");
+			// Initialize Flot data points
+			var socket = io.connect('http://localhost:8000');
+			socket.on('connection', function () {
+                alert("Connected");
+				socket.on('message', function (msg) {
+                    alert("Receive message from server: " + msg);
+                    return;
+				});
+                
+                socket.on('update', function (msg) {
+                    alert("Receive message from server: ");
+                    //console.log(msg);
+                    return;
+				});
+			});
+		});
+        */
+        
+        var app = angular.module('eHomeApp', [ 'socket.io' ]);
+        
+        app.config(function ($socketProvider) {
+            $socketProvider.setConnectionUrl('http://localhost:8000');
+        });
+        
+        app.controller('indexController', function ($scope, $socket) {
+
+            $socket.on('update', function (data) {
+                console.log("Receive update data from server: ");
+                console.log(data);
+                //$scope.serverResponse = data;
+                //$socket.emit('clientUpdate', data);
+                $scope.temp = data.data2;
+                $scope.humid = data.data1;
+                $scope.voltage = data.data3;
+            });
+            
+            $scope.emitBasic = function emitBasic() {
+                console.log('echo event emited');
+                $socket.emit('echo', $scope.dataToSend);
+                $scope.dataToSend = '';
+            };
+
+         });
+    </script>
+
+
+</body>
+
+</html>

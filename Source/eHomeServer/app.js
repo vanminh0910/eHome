@@ -30,10 +30,6 @@ var serialPort = new SerialPort(portName, {
   parser: serialport.parsers.readline("\n")
 });
 
-var io = require('socket.io').listen(8000); // server listens for socket.io communication at port 8000
-io.set('log level', 1); // disables debugging. this is optional. you may remove it if desired.
-
-
 // *************** configure express ********************
 var app = express();
 
@@ -85,8 +81,15 @@ app.use(function(err, req, res, next) {
 });
 
 
-//module.exports = app;
 
+var http = require('http').Server(app);
+//var io = require('socket.io').listen(8000); // server listens for socket.io communication at port 8000
+var io = require('socket.io')(http); // server listens for socket.io communication at port 8000
+//io.set('log level', 1); // disables debugging. this is optional. you may remove it if desired.
+
+
+//module.exports = app;
+/*
 var server = app.listen(3000, function () {
 
   var host = server.address().address;
@@ -95,9 +98,15 @@ var server = app.listen(3000, function () {
   console.log('Example app listening at http://%s:%s', host, port);
 
 });
+*/
+
+http.listen(3000, function(){
+  console.log('listening on *:3000');
+});
+
 
 // *************** configure socket.io events ********************
-io.sockets.on('connection', function (socket) {
+io.on('connection', function (socket) {
     console.log('client connected');
     // If socket.io receives message from the client browser then 
     // this call back will be executed.
