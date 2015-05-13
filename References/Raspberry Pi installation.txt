@@ -1,0 +1,184 @@
+Install precompiled mongodb
+
+	adduser --firstuid 100 --ingroup nogroup --shell /etc/false --disabled-password --gecos "" --no-create-home mongodb
+
+	cp -R mongodb-rpi/mongo /opt
+	chmod +x /opt/mongo/bin/*
+
+	mkdir /var/log/mongodb 
+	chown mongodb:nogroup /var/log/mongodb
+	mkdir /var/lib/mongodb
+	chown mongodb:nogroup /var/lib/mongodb
+
+	cp mongodb-rpi/debian/init.d /etc/init.d/mongod
+	cp mongodb-rpi/debian/mongodb.conf /etc/
+
+	ln -s /opt/mongo/bin/mongod /usr/bin/mongod
+	chmod u+x /etc/init.d/mongod
+
+	update-rc.d mongod defaults
+	/etc/init.d/mongod start  or sudo service mongd start
+
+Browse to http://localhost:28017/ to see status of mongo db.
+
+Mosquitto MQTT on Raspberry Pi [Broker - Publish and Subscribe Client]
+Grab the latest build from
+http://mosquitto.org/download/ or downloaded the following http://mosquitto.org/files/source/mosquitto-1.0.2.tar.gz
+
+Steps
+
+1. Created a “Mosquitto_MQTT” directory
+$ sudo mkdir Mosquitto_MQTT
+/home/pi/Mosquitto_MQTT
+2. Copied the “mosquitto-1.0.2.tar.gz” to the the following path using WinSCP
+Refer my WinSCP and Putty Tutorial for help with Copying file and Putty Usage.
+Enabling SSH on Raspberry Pi and using Putty and WinSCP « Raspberry Pi Adventures
+ 
+Follow these commands to Install
+$ sudo apt-get install libwrap0-dev
+$ tar zxf mosquitto-1.0.2.tar.gz
+$ cd mosquitto-0.15
+$ make
+$ sudo make install
+$ sudo ldconfig
+$ sudo make clean
+$ sudo iptables -A INPUT -p tcp -m tcp --dport 1883 -j ACCEPT
+ 
+Configuration File Location for Reference
+/etc/mosquitto/mosquitto.conf
+ 
+Putty Window 1 – Raspberry Pi
+Start Mosquitto Daemon on Raspberry Pi using Putty
+$ mosquitto
+ 
+Putty Window 2 – Raspberry Pi – Subscribe
+Open Putty Connection 1 to Raspberry Pi To Subscribe
+$ mosquitto_sub -d -t hello/world
+OR
+$ mosquitto_sub -h raspberrypi -d -t hello/world
+OR
+$ mosquitto_sub -h 192.168.1.2 -d -t hello/world
+Where 192.168.1.2 is your Raspberry Pi’s IP Address
+ 
+Putty Window 3 – Raspberry Pi – Publish
+Open Putty Connection 2 to Raspberry Pi To Publish
+$ mosquitto_pub -d -t hello/world -m "Message To Send"
+OR
+$ mosquitto_pub -h raspberrypi -d -t hello/world -m "Message To Send"
+OR
+$ mosquitto_pub -h 192.168.1.2 -d -t hello/world -m "Message To Send"
+Where 192.168.1.2 is your Raspberry Pi’s IP Address
+Note: Messages you type in Publish Window will be visible in Subscribe Window
+
+
+Here’s a quick how to on installing VSFTPD on the Raspberry Pi
+
+Open a terminal
+
+Type:
+sudo bash 
+Press Enter
+
+sudo apt-get install vsftpd
+Press Enter
+
+Press Y when prompted
+
+Type
+nano /etc/vsftpd.conf
+Press Enter.
+
+Edit or uncomment the following lines to secure VSFTPD
+Anonymous_enable=NO
+Local_enable=YES
+Write_enable=YES
+Ascii_upload_enable=YES
+Ascii_download_enable=YES
+
+Press
+CTRL + O
+To save
+
+Press
+CTRL + X 
+To exit
+
+Type:
+/etc/init.d/vsftpd restart
+
+
+OpenSSL lib for Paho MQTT lib
+
+sudo apt-get install libssl-dev
+
+JDK7
+sudo apt-get install openjdk-7-jre
+
+sudo apt-get install mosquitto
+sudo apt-get install mosquitto-clients
+
+
+Need to enable SPI on raspberry pi http://neophob.com/2012/08/raspberry-pi-enable-the-spi-device/
+Go to raspi-config -> advanced options -> enable SPI
+
+MPD https://mattscodecave.com/posts/setting-up-raspberry-pi-and-mpd-music-player-daemon-with-raspbian
+
+
+Generate MPD playlist: p=${PWD##*/};echo $p; find . -name '*.mp3' | sed -e "s%./%$p/%g" > ~/playlists/"$p".m3u
+mpc
+You can load (append) a playlist with the load command, so to play a specified playlist:
+mpc clear
+mpc load <playlist_name>
+mpc play
+
+Turn on/off GPIO
+	cd /sys/class/gpio
+	echo 17 > export
+	echo out > gpio17/direction
+	echo 1 > gpio17/value
+	echo 0 > gpio17/value
+	echo 17 > unexport
+
+    
+Serial communication: https://www.dexterindustries.com/Arduberry/how-to-program-the-arduberry/
+
+    Disable Serial Port Login. To enable the serial port for your own use you need to disable login on the port. There are two files that need to be edited. The first and main one is /etc/inittab. This file has the command to enable the login prompt and this needs to be disabled. Edit the file and move to the end of the file. You will see a line similar to
+
+    T0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100
+
+    Disable it by adding a # character to the beginning. Save the file.
+
+    #T0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100
+    
+    Disable Bootup Info
+
+    When the Raspberry Pi boots up, all the bootup information is sent to the serial port. Disabling this bootup information is optional and you may want to leave this enabled as it is sometimes useful to see what is happening at bootup. If you have a device connected (i.e. Arduino) at bootup, it will receive this information over the serial port, so it is up to you to decide whether this is a problem or not.
+
+    You can disable it by editing the file /boot/cmdline.txt
+
+    The contents of the file look like this
+
+    dwc_otg.lpm_enable=0 console=ttyAMA0,115200 kgdboc=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline rootwait
+
+    Remove all references to ttyAMA0 (which is the name of the serial port). The file will now look like this
+
+    dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline rootwait
+
+    Reboot
+
+    In order you enable the changes you have made, you will need to reboot the Raspberry Pi
+
+    sudo shutdown -r now
+
+    Test the Serial Port
+
+    A great way to test out the serial port is to use the minicom program. If you dont have this installed run
+
+    sudo apt-get install minicom
+
+    Connect your PC to the Raspberry Pi serial port using an appropriate serial port adapter and wiring, then open Putty or a similar serial terminal program on PC side. Setup a connection using the serial port at 9600 baud.
+
+    Now run up minicom on the Raspberry Pi using
+
+    minicom -b 9600 -o -D /dev/ttyAMA0
+

@@ -1,0 +1,12 @@
+avrdude -P COM10 -b 19200 -c avrisp -p m328p -v
+avrdude -P COM10 -b 19200 -c avrisp -p m328p -U efuse:w:0x06:m
+avrdude -P COM10 -b 19200 -c avrisp -p m328p -C ..\etc\avrdude.conf -U lfuse:w:0xff:m -U hfuse:w:0xde:m -U efuse:w:0x05:m
+
+Low battery measurement: https://code.google.com/p/tinkerit/wiki/SecretVoltmeter
+
+C:\Program Files (x86)\Arduino\hardware\tools\avr\bin>avrdude -P COM10 -b 19200 -c avrisp -p m328p -vv -C c:\Softs\Arduino\arduino-0022\hardware\tools\avr\etc\avrdude.conf
+
+http://www.hackster.io/rayburne/avr-firmware-duplicator
+
+
+avrdude -P usb -b 19200 -c usbasp -p m328p -vv -C c:\Softs\Arduino\arduino-0022\hardware\tools\avr\etc\avrdude.conf

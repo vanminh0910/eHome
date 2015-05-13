@@ -1,0 +1,4 @@
+Message structure used in nodes and gateway communication
+
+NodeID (uint16_t) - MessageType (byte) - Data1 (byte[4]) - Data2 (float)
+
