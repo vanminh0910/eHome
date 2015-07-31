@@ -36,13 +36,15 @@ Payload data;
 
 void setup() {
   Serial.begin(SERIAL_BAUD);
+  char buff[50];
+  sprintf(buff, "\nGateway starting");
+  DEBUGln(buff);
   radio.initialize(FREQUENCY, GATEWAY_ID, NETWORK_ID);
   #ifdef IS_RFM69HW
     radio.setHighPower(); //uncomment only for RFM69HW!
   #endif
   radio.encrypt(ENCRYPTKEY);
-  char buff[50];
-  sprintf(buff, "\nGateway starting. Working at %d Mhz...", FREQUENCY==RF69_433MHZ ? 433 : FREQUENCY==RF69_868MHZ ? 868 : 915);
+  sprintf(buff, "\nWorking at %d Mhz...", FREQUENCY==RF69_433MHZ ? 433 : FREQUENCY==RF69_868MHZ ? 868 : 915);
   DEBUGln(buff);
   pinMode(ONBOARD_LED, OUTPUT);
 }

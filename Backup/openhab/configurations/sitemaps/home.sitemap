@@ -1,0 +1,32 @@
+sitemap home label="Main Menu"
+{
+	Frame label="Phòng Khách" {
+		Switch item=Light_Living_LED		
+		Switch item=Light_Living_BULB		
+		Switch item=Light_Living_SUB		
+	}	
+	Frame label="Phòng Bếp" {
+		Switch item=Light_Kitchen_LED		
+		Switch item=Light_Kitchen_SUB		
+	}	
+	Frame label="Phòng Ba Mẹ" {
+		Switch item=Light_Bedroom1_LED		
+		Switch item=Light_Bedroom1_BULB		
+		Switch item=Light_Bedroom1_SUB		
+	}	
+	Frame label="Others" {
+		Switch item=Light_Door		
+		Switch item=Water		
+	}	
+	Frame label="Kịch Bản" {
+		Selection item=Scene_Light label="Scene Selection" mappings=[0="Off", 1="Xem TV", 2="Ăn Tối", 3="Ra Ngoài", 4="Đi Ngủ"]		
+	}	
+	Frame label="Thông Tin" {
+		Text item=Temperature_Living valuecolor=[Temp_LastUpdate==Uninitialized="lightgray", Temperature_Living<=30="green", >30="orange"]		
+		Text item=Humidity_Living valuecolor=[Temp_LastUpdate==Uninitialized="lightgray", Temp_LastUpdate<=30="green", >30="orange"]		
+		Text item=Temp_LastUpdate		
+		Text item=Sensor_Gas valuecolor=[Sensor_Gas==Uninitialized="green", Sensor_Gas==1="green", Sensor_Gas==0="red"]		
+		Text item=PIR1_LastUpdate		
+		Text item=Volt_PIR1 label="Pin 1 [%d]" icon="energy"		
+	}	
+}

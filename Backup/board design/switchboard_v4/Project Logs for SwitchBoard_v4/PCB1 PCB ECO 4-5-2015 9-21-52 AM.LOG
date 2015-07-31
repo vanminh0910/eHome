@@ -1,0 +1,16 @@
+Added Component: Designator=C1(C0805)
+Added Component: Designator=RT1(6-0805_L)
+Added Component: Designator=U1(32A_N)
+Added Pin To Net: NetName=20 Pin=C1-1
+Added Pin To Net: NetName=3 Pin=C1-2
+Added Pin To Net: NetName=4 Pin=RT1-1
+Added Pin To Net: NetName=29 Pin=RT1-2
+Added Pin To Net: NetName=3 Pin=U1-3
+Added Pin To Net: NetName=4 Pin=U1-4
+Added Pin To Net: NetName=3 Pin=U1-5
+Added Pin To Net: NetName=4 Pin=U1-6
+Added Pin To Net: NetName=4 Pin=U1-18
+Added Pin To Net: NetName=3 Pin=U1-21
+Added Member To Class: ClassName=TQFP Adapter Member=Component C1 Cap Pol3
+Added Member To Class: ClassName=TQFP Adapter Member=Component RT1 Res Thermal
+Added Member To Class: ClassName=Sheet1 Member=Component U1 ATmega328P-AU

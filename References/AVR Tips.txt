@@ -10,3 +10,9 @@ http://www.hackster.io/rayburne/avr-firmware-duplicator
 
 
 avrdude -P usb -b 19200 -c usbasp -p m328p -vv -C c:\Softs\Arduino\arduino-0022\hardware\tools\avr\etc\avrdude.conf
+
+avrdude -P usb -b 19200 -c stk500v2 -p m328p -vv
+
+avrdude -c arduino -p m328p -P COM12 -b 19200 -v
+avrdude -c arduino -p m328p -P COM12 -b 19200 -U flash:w:boot.hex:i -U efuse:w:0xFD:m -U hfuse:w:0xDC:m -U lfuse:w:0xDE:m -U lock:w:0x0F:m
+avrdude -c usbasp -p m328p -P usb -b 115200 -U flash:w:boot.hex:i -U efuse:w:0xFD:m -U hfuse:w:0xDC:m -U lfuse:w:0xDE:m -U lock:w:0x0F:m

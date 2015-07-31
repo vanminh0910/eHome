@@ -1,0 +1,52 @@
+import org.openhab.core.library.types.*
+import org.openhab.core.persistence.*
+import org.openhab.core.scheduler.*
+import org.openhab.model.script.actions.*
+import org.openhab.io.gpio.*
+import org.openhab.binding.gpio.*
+import org.openhab.binding.exec.*
+
+rule "Initialize system"
+	when 
+		System started
+	then
+		logInfo("ALARME", "-------- System started -----------")
+		say("The system is up now and ready to be in service")
+end
+
+rule VoiceControl
+ when
+    Item VoiceCommand received command
+ then
+    var command = receivedCommand.toString.lowerCase
+	postUpdate(CommandString, command)    
+ end
+
+/**
+ * This rule is for activating light scene 
+ * mappings=[0=Off, 1=All]
+ */
+rule "Activate Light Scene"
+	when
+		Item Scene_Light received command
+	then
+		if (receivedCommand == 1) {
+			sendCommand(Relay1, ON)
+			sendCommand(Relay2, ON)
+			sendCommand(Relay3, ON)
+			sendCommand(Relay4, ON)
+			sendCommand(Relay5, ON)
+			sendCommand(Relay6, ON)
+			sendCommand(Relay7, ON)
+			sendCommand(Relay8, ON)
+		} else if (receivedCommand == 0) {
+			sendCommand(Relay1, OFF)
+			sendCommand(Relay2, OFF)
+			sendCommand(Relay3, OFF)
+			sendCommand(Relay4, OFF)
+			sendCommand(Relay5, OFF)
+			sendCommand(Relay6, OFF)
+			sendCommand(Relay7, OFF)
+			sendCommand(Relay8, OFF)
+		}
+end

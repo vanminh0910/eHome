@@ -1,0 +1,24 @@
+﻿<div class="container col-xs-offset-1 col-xs-10">
+    <button class="btn btn-primary pull-right" data-ng-click="addRoom()">Add Room</button><br/><br /><br />
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Room Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="room in rooms">
+                <td>{{$index+1}}</td>
+                <td>{{room.id}}</td>
+                <td><input type="text" class="form-control" data-ng-model="room.name" id="inputName" value="{{room.name}}"></td>
+                <td>
+                    <button class="btn btn-success" data-ng-click="saveRoom(room)"><span class="glyphicon glyphicon-ok"></span></button>
+                    <button class="btn btn-warning" data-ng-click="deleteRoom(room)"><span class="glyphicon glyphicon-remove"></span></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

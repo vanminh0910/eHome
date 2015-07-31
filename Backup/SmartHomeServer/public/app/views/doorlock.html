@@ -1,0 +1,6 @@
+﻿<div data-ng-click="doorClick(doorlock.id)" data-ng-class="doorlock.status ? 'col-xs-3 photoCaption btn btn-warning' : 'col-xs-3 photoCaption btn btn-success'" data-ng-repeat="doorlock in doorlocks">
+    <img data-ng-if="doorlock.status" data-ng-src="Content/images/door_lock.png" alt="Img" class="img-fit" />
+    <img data-ng-if="!doorlock.status" data-ng-src="Content/images/door_unlock.png" alt="Img" class="img-fit" />
+    <br />
+    <small><em> {{doorlock.name}} </em></small>
+</div>

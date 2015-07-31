@@ -1,0 +1,55 @@
+﻿<div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-md-offset-2">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-2 col-xs-4 col-sm-2">
+                <a href="#/course/add" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add New Course</a>
+            </div>
+        </div>
+        <div class="well well-sm" data-ng-show="totalRecordsCount == 0">
+            <h5>No course found to match "{{query}}"</h5>
+        </div>
+        <toaster-container toaster-options="{'time-out': 1700}"></toaster-container>
+        <div data-ng-show="totalRecordsCount > 0">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" data-ng-model="query" class="form-control" placeholder="Filter Courses by Name or Category)" />
+                </div>
+            </div>
+            <br />
+            <ul class="list-group" data-ng-repeat="course in courses | filter:query | orderBy: 'name' ">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-2 col-md-1">
+                            <img data-ng-src=""
+                                 title="icon" class="courseIcon" />
+                        </div>
+                        <div class="col-xs-6 col-md-8">
+                            <a href="" data-ng-click="showCourseDetail(course.id)">
+                                <h2 class="courseName">{{course.name}}</h2>
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-3">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 col-md-1">
+                            <span class="badge">9</span>
+                        </div>
+                        <div class="col-xs-6 col-md-8">
+                            <p class="text-warning"><small>Trainer: Minh Ha</small></p>
+                            <p>{{course.description}}</p>
+                            <hr class="seperator" />
+                            <a href="" data-ng-click="enrollCourse(course.id)"><span class="glyphicon glyphicon-bookmark"></span>Bookmark Place</a>
+                        </div>
+                        <div class="col-xs-4 col-md-3">
+                            <a href="" data-ng-click="showCourseDetail(course.id)">
+                                <img data-ng-src="{{course.image}}" class="img-thumbnail" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

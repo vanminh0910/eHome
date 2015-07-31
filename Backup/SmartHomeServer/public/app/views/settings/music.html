@@ -1,0 +1,53 @@
+﻿<div class="container col-xs-offset-1 col-xs-10">
+    <div class="alert alert-dismissable alert-success" data-ng-if="message !=''">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{message}}
+    </div>
+    <div class="alert alert-dismissable alert-danger" data-ng-if="errorMsg !=''">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{errorMsg}}
+    </div>
+    <br />
+    <button class="btn btn-success pull-right" data-ng-click="addMode()">Add Mode</button><br /><br /><br />
+    <form class="form-horizontal" data-ng-repeat="mode in modes">
+        <fieldset>
+            <div class="form-group">
+                <label for="modeName" class="col-lg-2 control-label">Mode Name</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="modeName" placeholder="Mode Name" data-ng-model="mode.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Music folder</label>
+                <div class="col-lg-10">
+                    <select class="form-control" id="modeFolder" data-ng-model="mode.folders[0].path" data-ng-options="folder for folder in folders">
+                        <option value="">-- Choose a music folder --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary" data-ng-click="saveMode(mode)">Save</button>
+                    <button class="btn btn-danger" data-ng-click="deleteMode(mode)">Delete</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">I'm a modal!</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">
+                    <a ng-click="selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+</div>

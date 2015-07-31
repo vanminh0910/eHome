@@ -1,0 +1,120 @@
+Added Component: Designator=P1(BIG_Header 2)
+Added Component: Designator=P2(HDR2X5)
+Added Component: Designator=P3(BIG_Header 2)
+Added Component: Designator=P4(HDR1X4)
+Added Component: Designator=P9(BIG_Header 2)
+Added Component: Designator=P10(BIG_Header 2)
+Added Component: Designator=ProMini(Arduino Pro Mini)
+Added Component: Designator=Q1(BTA6-600)
+Added Component: Designator=Q2(BTA6-600)
+Added Component: Designator=Q3(BTA6-600)
+Added Component: Designator=U1(MOC30XX)
+Added Component: Designator=U2(MOC30XX)
+Added Component: Designator=U3(MOC30XX)
+Added Pin To Net: NetName=A0 Pin=ProMini-23
+Added Net: Name=A0
+Added Pin To Net: NetName=A1 Pin=ProMini-24
+Added Net: Name=A1
+Added Pin To Net: NetName=A2 Pin=ProMini-25
+Added Net: Name=A2
+Added Pin To Net: NetName=D2 Pin=ProMini-32
+Added Net: Name=D2
+Added Pin To Net: NetName=D3 Pin=ProMini-1
+Added Net: Name=D3
+Added Pin To Net: NetName=D4 Pin=ProMini-2
+Added Net: Name=D4
+Added Pin To Net: NetName=D5 Pin=P4-2
+Added Pin To Net: NetName=D5 Pin=ProMini-9
+Added Net: Name=D5
+Added Pin To Net: NetName=D6 Pin=P4-3
+Added Pin To Net: NetName=D6 Pin=ProMini-10
+Added Net: Name=D6
+Added Pin To Net: NetName=D7 Pin=P4-4
+Added Pin To Net: NetName=D7 Pin=ProMini-11
+Added Net: Name=D7
+Added Pin To Net: NetName=D8 Pin=ProMini-12
+Added Net: Name=D8
+Added Pin To Net: NetName=D9 Pin=P2-3
+Added Pin To Net: NetName=D9 Pin=ProMini-13
+Added Net: Name=D9
+Added Pin To Net: NetName=D10 Pin=P2-4
+Added Pin To Net: NetName=D10 Pin=ProMini-14
+Added Net: Name=D10
+Added Pin To Net: NetName=GND Pin=P1-1
+Added Pin To Net: NetName=GND Pin=P2-9
+Added Pin To Net: NetName=GND Pin=P2-10
+Added Pin To Net: NetName=GND Pin=P4-1
+Added Pin To Net: NetName=GND Pin=ProMini-3
+Added Pin To Net: NetName=GND Pin=ProMini-3
+Added Pin To Net: NetName=GND Pin=ProMini-21
+Added Pin To Net: NetName=GND Pin=ProMini-21
+Added Pin To Net: NetName=GND Pin=U1-2
+Added Pin To Net: NetName=GND Pin=U2-2
+Added Pin To Net: NetName=GND Pin=U3-2
+Added Net: Name=GND
+Added Pin To Net: NetName=MISO Pin=P2-7
+Added Pin To Net: NetName=MISO Pin=ProMini-16
+Added Net: Name=MISO
+Added Pin To Net: NetName=MOSI Pin=P2-6
+Added Pin To Net: NetName=MOSI Pin=ProMini-15
+Added Net: Name=MOSI
+Added Pin To Net: NetName=NetP3_1 Pin=P3-1
+Added Pin To Net: NetName=NetP3_1 Pin=Q1-1
+Added Net: Name=NetP3_1
+Added Pin To Net: NetName=NetP3_2 Pin=P3-2
+Added Pin To Net: NetName=NetP3_2 Pin=Q1-2
+Added Net: Name=NetP3_2
+Added Pin To Net: NetName=NetP9_1 Pin=P9-1
+Added Pin To Net: NetName=NetP9_1 Pin=Q2-1
+Added Net: Name=NetP9_1
+Added Pin To Net: NetName=NetP9_2 Pin=P9-2
+Added Pin To Net: NetName=NetP9_2 Pin=Q2-2
+Added Net: Name=NetP9_2
+Added Pin To Net: NetName=NetP10_1 Pin=P10-1
+Added Pin To Net: NetName=NetP10_1 Pin=Q3-1
+Added Net: Name=NetP10_1
+Added Pin To Net: NetName=NetP10_2 Pin=P10-2
+Added Pin To Net: NetName=NetP10_2 Pin=Q3-2
+Added Net: Name=NetP10_2
+Added Pin To Net: NetName=NetQ1_3 Pin=Q1-3
+Added Pin To Net: NetName=NetQ1_3 Pin=U1-4
+Added Net: Name=NetQ1_3
+Added Pin To Net: NetName=NetQ2_3 Pin=Q2-3
+Added Pin To Net: NetName=NetQ2_3 Pin=U2-4
+Added Net: Name=NetQ2_3
+Added Pin To Net: NetName=NetQ3_3 Pin=Q3-3
+Added Pin To Net: NetName=NetQ3_3 Pin=U3-4
+Added Net: Name=NetQ3_3
+Added Pin To Net: NetName=NetR4_2 Pin=U1-1
+Added Net: Name=NetR4_2
+Added Pin To Net: NetName=NetR5_1 Pin=U1-6
+Added Net: Name=NetR5_1
+Added Pin To Net: NetName=NetR7_2 Pin=U2-1
+Added Net: Name=NetR7_2
+Added Pin To Net: NetName=NetR8_1 Pin=U2-6
+Added Net: Name=NetR8_1
+Added Pin To Net: NetName=NetR9_2 Pin=U3-1
+Added Net: Name=NetR9_2
+Added Pin To Net: NetName=NetR10_1 Pin=U3-6
+Added Net: Name=NetR10_1
+Added Pin To Net: NetName=RST Pin=ProMini-29
+Added Pin To Net: NetName=RST Pin=ProMini-29
+Added Net: Name=RST
+Added Pin To Net: NetName=RXI Pin=ProMini-30
+Added Pin To Net: NetName=RXI Pin=ProMini-30
+Added Net: Name=RXI
+Added Pin To Net: NetName=SCK Pin=P2-5
+Added Pin To Net: NetName=SCK Pin=ProMini-17
+Added Net: Name=SCK
+Added Pin To Net: NetName=TX0 Pin=ProMini-31
+Added Pin To Net: NetName=TX0 Pin=ProMini-31
+Added Net: Name=TX0
+Added Pin To Net: NetName=VCC Pin=P1-2
+Added Pin To Net: NetName=VCC Pin=P2-1
+Added Pin To Net: NetName=VCC Pin=P2-2
+Added Pin To Net: NetName=VCC Pin=ProMini-6
+Added Pin To Net: NetName=VCC Pin=ProMini-6
+Added Pin To Net: NetName=VCC Pin=ProMini-RAW
+Added Net: Name=VCC
+Added Class: Name=switchboard_schematic
+Added Room: Name=switchboard_schematic

@@ -1,25 +1,25 @@
 EAGLE AutoRouter Statistics:
 
-Job           : c:/Subversion/Personal/eHome/eGatewayShield/eGatewayShield.brd
+Job           : C:/Subversion/Personal/eHome/eGatewayShield/eGatewayShield.brd
 
-Start at      : 15:11:58 (4/23/2015)
-End at        : 15:17:51 (4/23/2015)
-Elapsed time  : 00:03:00
+Start at      : 13:48:58 (6/24/2015)
+End at        : 13:49:00 (6/24/2015)
+Elapsed time  : 00:00:00
 
-Signals       :    55   RoutingGrid: 5.5 mil  Layers: 2
-Connections   :    51   predefined:  12 ( 0 Vias )
+Signals       :    41   RoutingGrid: 25 mil  Layers: 2
+Connections   :    10   predefined:  3 ( 0 Vias )
 
-Router memory :   1353456
+Router memory :   59568
 
-Passname          : TopRouter     Route Optimize1 Optimize2 Optimize3 Optimize4 Optimize5 Optimize6 Optimize7 Optimize8 Optimize9Optimize10Optimize11Optimize12
+Passname          :     Route
 
-Time per pass     :  00:02:39  00:00:02  00:00:02  00:00:01  00:00:02  00:00:02  00:00:01  00:00:02  00:00:01  00:00:02  00:00:02  00:00:01  00:00:02  00:00:01
-Number of Ripups  :         0         1         0         0         0         0         0         0         0         0         0         0         0         0
-max. Level        :         0         1         0         0         0         0         0         0         0         0         0         0         0         0
-max. Total        :         0        11         0         0         0         0         0         0         0         0         0         0         0         0
+Time per pass     :  00:00:00
+Number of Ripups  :         0
+max. Level        :         0
+max. Total        :         0
 
-Routed            :         0        39        39        39        39        39        39        39        39        39        39        39        39        39
-Vias              :         0        17        15        15        16        15        15        15        14        14        14        14        14        14
-Resolution        :    23.5 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %
+Routed            :         7
+Vias              :         1
+Resolution        :   100.0 %
 
-Final             : 92.2% finished. Polygons may have fallen apart.
+Final             : 90.0% finished. Polygons may have fallen apart.

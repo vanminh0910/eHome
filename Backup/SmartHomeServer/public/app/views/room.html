@@ -1,0 +1,23 @@
+﻿<ul class="list-group" data-ng-repeat="room in rooms">
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col-xs-2 col-md-2">
+                <div class="photoCaption">
+                    <img data-ng-src="Content/images/{{room.image}}" alt="Img" class="img_fit" /><br/>
+                    <small><em> {{room.name}} </em></small>
+                </div>
+            </div>
+            <div class="row col-xs-10 col-md-10">
+                <div data-ng-repeat="sw in switch_boards | filter:{ room: room.id }">
+                    <div data-ng-click="relayClick(sw.id, $index)"  data-ng-class="relay.status ? 'col-xs-2 photoCaption btn btn-warning' : 'col-xs-2 photoCaption btn btn-primary'" data-ng-repeat="relay in sw.relay">
+                        <img ng-show="relay.status" alt="Img" class="img_fit" src="Content/images/light-bulb-icon.png" />
+                        <img ng-show="!relay.status" alt="Img" class="img_fit" src="Content/images/light-bulb-off-icon.png" />
+                        <br />
+                        <small><em> {{relay.name}} </em></small>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </li>
+</ul>

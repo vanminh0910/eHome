@@ -1,0 +1,16 @@
+sitemap home label="Main Menu"
+{
+	Frame label="Smart Bond" {
+		Switch item=Relay1
+		Switch item=Relay2
+		Switch item=Relay3
+		Switch item=Relay4
+		Switch item=Relay5
+		Switch item=Relay6
+		Switch item=Relay7
+		Switch item=Relay8
+	}	
+	Frame label="Kịch Bản" {
+		Selection item=Scene_Light label="Scene Selection" mappings=[0="Tắt Hết", 1="Bật Hết"]
+	}
+}

@@ -1,0 +1,12 @@
+Group	All
+Group	Status	(All)	
+Switch	Relay1 "Công tắc 1" (All) { gpio="pin:23" }
+Switch	Relay2 "Công tắc 2" (All) { gpio="pin:24" }
+Switch	Relay3 "Công tắc 3" (All) { gpio="pin:13" }
+Switch	Relay4 "Công tắc 4" (All) { gpio="pin:19" }
+Switch	Relay5 "Công tắc 5" (All) { gpio="pin:26" }
+Switch	Relay6 "Công tắc 6" (All) { gpio="pin:16" }
+Switch	Relay7 "Công tắc 7" (All) { gpio="pin:20" }
+Switch	Relay8 "Công tắc 8" (All) { gpio="pin:21" }
+Number	Scene_Light	"Scene"	<sofa>
+String	VoiceCommand

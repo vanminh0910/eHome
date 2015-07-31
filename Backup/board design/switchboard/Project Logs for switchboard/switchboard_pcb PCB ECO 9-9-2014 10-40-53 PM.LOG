@@ -1,0 +1,10 @@
+Removed Member From Class: ClassName=switchboard_schematic Member=P10
+Change Component Designator: OldDesignator=P3 NewDesignator=P6
+Change Component Designator: OldDesignator=P4 NewDesignator=P3
+Change Component Designator: OldDesignator=P9 NewDesignator=P5
+Change Component Designator: OldDesignator=P10 NewDesignator=P4
+Change Net Name : Old Net Name=NetP3_1 New Net Name=NetP4_1
+Change Net Name : Old Net Name=NetP3_2 New Net Name=NetP6_2
+Change Net Name : Old Net Name=NetP9_2 New Net Name=NetP5_2
+Change Net Name : Old Net Name=NetP10_2 New Net Name=NetP4_2
+Added Member To Class: ClassName=switchboard_schematic Member=Component P6 BIG_Header 2

@@ -1,0 +1,16 @@
+﻿<div class="container">    
+    <div class="container">
+        <a ui-sref="main.dashboard" class="btn btn-primary btn-lg col-xs-2" role="button"><span class="glyphicon glyphicon-info-sign"></span> <br />Info</a>
+        <a ui-sref="main.room" class="btn btn-primary btn-lg col-xs-2" role="button"><span class="glyphicon glyphicon-home"></span> <br />Rooms</a>
+        <a ui-sref="main.sensor" class="btn btn-primary btn-lg col-xs-2" role="button"><span class="glyphicon glyphicon-fire"></span> <br />Sensors</a>
+        <a ui-sref="main.doorlock" class="btn btn-primary btn-lg col-xs-2" role="button"><span class="glyphicon glyphicon-lock"></span> <br />Door Locks</a>
+        <a ui-sref="main.camera" class="btn btn-primary btn-lg col-xs-2" role="button"><span class="glyphicon glyphicon-camera"></span> <br />Camera</a>
+        <a ui-sref="main.music" class="btn btn-primary btn-lg col-xs-2" role="button"><span class="glyphicon glyphicon-music"></span> <br />Music</a>
+    </div><hr />
+    <div class="container">
+        <div ui-view></div>
+    </div><hr />
+    <div class="container">
+        <a href="" class="btn btn-primary btn-lg col-xs-2" role="button" data-ng-repeat="mode in modes" data-ng-click="modeClick(mode._id)"><span class="glyphicon glyphicon-star"></span> <br />{{mode.name}}</a>
+    </div>
+</div>

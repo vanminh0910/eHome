@@ -1,0 +1,125 @@
+import org.openhab.core.library.types.*
+import org.openhab.core.persistence.*
+import org.openhab.core.scheduler.*
+import org.openhab.model.script.actions.*
+
+
+var Number counter = 1
+var Timer timer = null
+
+rule "Initialize system"
+	when 
+		System started
+	then
+		logInfo("ALARME", "-------- System started -----------")
+		say("The system is up now and ready to be in service")
+end
+
+rule VoiceControl
+ when
+    Item VoiceCommand received command
+ then
+    var command = receivedCommand.toString.lowerCase
+	postUpdate(CommandString, command)
+    if (command == "everything off" || command == "táº¯t Ä‘Ã¨n") {
+    	Lights.sendCommand("OFF")    
+    }
+    
+ end
+
+/**
+ * This rule is for activating light scene 
+ * mappings=[0=Off, 1=TV, 2=Ä‚n Tá»‘i, 3=Ra NgoÃ i, 4=Äi Ngá»§]
+ */
+rule "Activate Light Scene"
+	when
+		Item Scene_Light received command
+	then
+		if (receivedCommand == 0 || receivedCommand == 3 || receivedCommand == 4) {
+			Lights?.members.forEach(light|
+				postUpdate(light, OFF)
+			)
+		} else if (receivedCommand == 1) {
+			postUpdate(Light_Living_LED, ON)
+			postUpdate(Light_Kitchen_LED, OFF)
+			postUpdate(Light_Kitchen_SUB, OFF)
+			postUpdate(Light_Bedroom1_LED, OFF)
+			postUpdate(Light_Bedroom1_BULB, OFF)
+			postUpdate(Light_Bedroom1_SUB, OFF)
+		} else if (receivedCommand == 2) {
+			postUpdate(Light_Living_LED, OFF)
+			postUpdate(Light_Living_BULB, OFF)
+			postUpdate(Light_Living_SUB, OFF)
+			postUpdate(Light_Kitchen_LED, ON)
+			postUpdate(Light_Kitchen_SUB, OFF)
+			postUpdate(Light_Bedroom1_LED, OFF)
+			postUpdate(Light_Bedroom1_BULB, OFF)
+			postUpdate(Light_Bedroom1_SUB, OFF)
+		}
+end
+
+// Creates an item that stores the last update time of temp sensor item
+rule "Records last temporature update time"
+when
+  Item Humidity_Living received update
+then
+  postUpdate(Temp_LastUpdate, new DateTimeType())
+end
+
+// Creates an item that stores the last update time of PIR sensor 1
+rule "Records last update time of PIR2"
+when
+  Item Volt_PIR2 received update
+then
+  postUpdate(PIR2_LastUpdate, new DateTimeType())
+end
+
+// 
+// Gas detection rule
+//
+rule "Gas detection"
+when
+    Item Sensor_Gas received update
+then        
+	logInfo("sensor.rules", "Fire alarm tripped by temperature sensor!")
+end
+
+
+// Bedroom light is turned off when there is no motion detected after 5 minutes.
+// Every time there is motion detected, counter value is clear
+
+var Number counter = 0
+
+rule "Motion detected in Bedroom 1"
+when
+	Item Light_Living_SUB received update
+then
+	postUpdate(PIR1_LastUpdate, new DateTimeType())	
+	sendCommand(Light_Living_BULB, OFF)
+	counter = 0
+end
+
+// Every 1 min it is checked whether there is motion. If yes, clear the counter.
+// If counter exceeds 5, turn off all lights in bedroom
+
+rule "Auto turn off bedroom light"
+when   
+	Time cron "0 * * * * ?"
+then
+	logInfo("sensor.rules", "1 min rule activated")
+	sendCommand(Light_Bedroom1_LED, OFF)
+	sendCommand(Light_Bedroom1_BULB, OFF)
+	sendCommand(Light_Bedroom1_SUB, OFF)
+	if(Light_Bedroom1_LED.state == ON || Light_Bedroom1_BULB == ON || Light_Bedroom1_SUB == ON) {
+		if (counter == 5) { // 5 minutes
+			sendCommand(Light_Bedroom1_LED, OFF)
+			sendCommand(Light_Bedroom1_BULB, OFF)
+			sendCommand(Light_Bedroom1_SUB, OFF)
+			counter = 0
+			logInfo("sensor.rules", "No motion detected in bedroom 1 in 5 mins. Turn off all lights!")
+		}
+		counter = counter + 1
+	} else {
+		counter = 0
+	}
+end

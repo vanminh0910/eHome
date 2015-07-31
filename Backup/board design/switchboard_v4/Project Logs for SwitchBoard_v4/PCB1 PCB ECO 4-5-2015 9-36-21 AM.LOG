@@ -1,0 +1,8 @@
+Added Component: Designator=D1(3.2X1.6X1.1)
+Added Component: Designator=RT1(6-0805_L)
+Added Pin To Net: NetName=4 Pin=D1-2
+Added Pin To Net: NetName=17 Pin=RT1-2
+Added Pin To Net: NetName=NetD1_1 Pin=D1-1
+Added Pin To Net: NetName=NetD1_1 Pin=RT1-1
+Added Net: Name=NetD1_1
+Added Member To Class: ClassName=TQFP Adapter Member=Component D1 LED2

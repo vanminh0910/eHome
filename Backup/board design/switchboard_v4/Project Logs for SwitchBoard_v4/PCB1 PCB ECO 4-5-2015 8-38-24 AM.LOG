@@ -1,0 +1,106 @@
+Added Component: Designator=P3(HDR1X8)
+Added Component: Designator=P4(HDR1X8)
+Added Component: Designator=P5(HDR1X8)
+Added Component: Designator=P6(HDR1X8)
+Added Component: Designator=U5(32A_N)
+Added Component: Designator=U?(32A_N)
+Added Pin To Net: NetName=1 Pin=P4-1
+Added Pin To Net: NetName=1 Pin=U5-1
+Added Net: Name=1
+Added Pin To Net: NetName=2 Pin=P4-2
+Added Pin To Net: NetName=2 Pin=U5-2
+Added Net: Name=2
+Added Pin To Net: NetName=3 Pin=P4-3
+Added Pin To Net: NetName=3 Pin=U5-3
+Added Net: Name=3
+Added Pin To Net: NetName=4 Pin=P4-4
+Added Pin To Net: NetName=4 Pin=U5-4
+Added Net: Name=4
+Added Pin To Net: NetName=5 Pin=P4-5
+Added Pin To Net: NetName=5 Pin=U5-5
+Added Net: Name=5
+Added Pin To Net: NetName=6 Pin=P4-6
+Added Pin To Net: NetName=6 Pin=U5-6
+Added Net: Name=6
+Added Pin To Net: NetName=7 Pin=P4-7
+Added Pin To Net: NetName=7 Pin=U5-7
+Added Net: Name=7
+Added Pin To Net: NetName=8 Pin=P4-8
+Added Pin To Net: NetName=8 Pin=U5-8
+Added Net: Name=8
+Added Pin To Net: NetName=9 Pin=P6-1
+Added Pin To Net: NetName=9 Pin=U5-9
+Added Net: Name=9
+Added Pin To Net: NetName=10 Pin=P6-2
+Added Pin To Net: NetName=10 Pin=U5-10
+Added Net: Name=10
+Added Pin To Net: NetName=11 Pin=P6-3
+Added Pin To Net: NetName=11 Pin=U5-11
+Added Net: Name=11
+Added Pin To Net: NetName=12 Pin=P6-4
+Added Pin To Net: NetName=12 Pin=U5-12
+Added Net: Name=12
+Added Pin To Net: NetName=13 Pin=P6-5
+Added Pin To Net: NetName=13 Pin=U5-13
+Added Net: Name=13
+Added Pin To Net: NetName=14 Pin=P6-6
+Added Pin To Net: NetName=14 Pin=U5-14
+Added Net: Name=14
+Added Pin To Net: NetName=15 Pin=P6-7
+Added Pin To Net: NetName=15 Pin=U5-15
+Added Net: Name=15
+Added Pin To Net: NetName=16 Pin=P6-8
+Added Pin To Net: NetName=16 Pin=U5-16
+Added Net: Name=16
+Added Pin To Net: NetName=17 Pin=P3-1
+Added Pin To Net: NetName=17 Pin=U5-17
+Added Net: Name=17
+Added Pin To Net: NetName=18 Pin=P3-2
+Added Pin To Net: NetName=18 Pin=U5-18
+Added Net: Name=18
+Added Pin To Net: NetName=19 Pin=P3-3
+Added Pin To Net: NetName=19 Pin=U5-19
+Added Net: Name=19
+Added Pin To Net: NetName=20 Pin=P3-4
+Added Pin To Net: NetName=20 Pin=U5-20
+Added Net: Name=20
+Added Pin To Net: NetName=21 Pin=P3-5
+Added Pin To Net: NetName=21 Pin=U5-21
+Added Net: Name=21
+Added Pin To Net: NetName=22 Pin=P3-6
+Added Pin To Net: NetName=22 Pin=U5-22
+Added Net: Name=22
+Added Pin To Net: NetName=23 Pin=P3-7
+Added Pin To Net: NetName=23 Pin=U5-23
+Added Net: Name=23
+Added Pin To Net: NetName=24 Pin=P3-8
+Added Pin To Net: NetName=24 Pin=U5-24
+Added Net: Name=24
+Added Pin To Net: NetName=25 Pin=P5-1
+Added Pin To Net: NetName=25 Pin=U5-25
+Added Net: Name=25
+Added Pin To Net: NetName=26 Pin=P5-2
+Added Pin To Net: NetName=26 Pin=U5-26
+Added Net: Name=26
+Added Pin To Net: NetName=27 Pin=P5-3
+Added Pin To Net: NetName=27 Pin=U5-27
+Added Net: Name=27
+Added Pin To Net: NetName=28 Pin=P5-4
+Added Pin To Net: NetName=28 Pin=U5-28
+Added Net: Name=28
+Added Pin To Net: NetName=29 Pin=P5-5
+Added Pin To Net: NetName=29 Pin=U5-29
+Added Net: Name=29
+Added Pin To Net: NetName=30 Pin=P5-6
+Added Pin To Net: NetName=30 Pin=U5-30
+Added Net: Name=30
+Added Pin To Net: NetName=31 Pin=P5-7
+Added Pin To Net: NetName=31 Pin=U5-31
+Added Net: Name=31
+Added Pin To Net: NetName=32 Pin=P5-8
+Added Pin To Net: NetName=32 Pin=U5-32
+Added Net: Name=32
+Added Class: Name=Sheet1
+Added Class: Name=TQFP Adapter
+Added Room: Name=Sheet1
+Added Room: Name=TQFP Adapter

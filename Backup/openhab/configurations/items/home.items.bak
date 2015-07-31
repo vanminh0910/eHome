@@ -1,0 +1,68 @@
+Group All
+Group gHome 		(All)
+Group Lights 		(All)
+Group Living 	"Phòng Khách" 	<sofa> 	(gHome)
+Group Kitchen 	"Nhà Bếp" 		<kitchen> 	(gHome)
+Group Bedroom1 	"Phòng Ba Mẹ" 		<bath> 		(gHome)
+Group Bedroom2 	"Phòng Carrot" 		<bath> 		(gHome)
+Group Toilet1 	"WC1" 		<bath> 		(gHome)
+Group Toilet2 	"WC2" 		<bath> 		(gHome)
+Group Corridor 	"Ban công" 		<corridor> 	(gHome)
+
+Group Status 	(All)
+Group:Number:AVG 				Temperature	"Avg. Room Temperature [%.1f °C]" 	<temperature>	(Status)
+/* active groups */
+
+
+/* Lights Living room*/
+Switch Light_Living_LED 		"Đèn Chính" 		(Living, Lights) {mqtt="<[mymosquitto:OUT/1/2/1:state:MAP(switch.map)],>[mymosquitto:IN/1/4/1:command:ON:1],>[mymosquitto:IN/1/4/1:command:OFF:0]"}
+Switch Light_Living_BULB 		"Đèn Tròn"			(Living, Lights)	{mqtt="<[mymosquitto:OUT/1/2/0:state:MAP(switch.map)],>[mymosquitto:IN/1/4/0:command:ON:1],>[mymosquitto:IN/1/4/0:command:OFF:0]"}
+Switch Light_Living_SUB 		"Đèn Hắt" 			(Living, Lights)	{mqtt="<[mymosquitto:OUT/1/2/2:state:MAP(switch.map)],>[mymosquitto:IN/1/4/2:command:ON:1],>[mymosquitto:IN/1/4/2:command:OFF:0]"}
+
+/* Lights Kitchen*/
+Switch Light_Kitchen_LED 		"Đèn Bếp Chính" 		(Kitchen, Lights)	{mqtt="<[mymosquitto:OUT/2/2/1:state:MAP(switch.map)],>[mymosquitto:IN/2/4/1:command:ON:1],>[mymosquitto:IN/2/4/1:command:OFF:0]"}
+Switch Light_Kitchen_SUB 		"Đèn Bếp Hắt" 			(Kitchen, Lights)	{mqtt="<[mymosquitto:OUT/2/2/2:state:MAP(switch.map)],>[mymosquitto:IN/2/4/2:command:ON:1],>[mymosquitto:IN/2/4/2:command:OFF:0]"}
+
+/* Lights Bedroom 1*/
+Switch Light_Bedroom1_LED 		"Đèn Chính" 		(Bedroom1, Lights)	{mqtt="<[mymosquitto:OUT/3/2/1:state:MAP(switch.map)],>[mymosquitto:IN/3/4/1:command:ON:1],>[mymosquitto:IN/3/4/1:command:OFF:0]"}
+Switch Light_Bedroom1_BULB 		"Đèn Tròn" 			(Bedroom1, Lights)	{mqtt="<[mymosquitto:OUT/3/2/0:state:MAP(switch.map)],>[mymosquitto:IN/3/4/0:command:ON:1],>[mymosquitto:IN/3/4/0:command:OFF:0]"}
+Switch Light_Bedroom1_SUB 		"Đèn Hắt" 			(Bedroom1, Lights)	{mqtt="<[mymosquitto:OUT/3/2/2:state:MAP(switch.map)],>[mymosquitto:IN/3/4/2:command:ON:1],>[mymosquitto:IN/3/4/2:command:OFF:0]"}
+
+/* Lights Bedroom 2*/
+Switch Light_Beroom2_LED 		"Đèn Chính" 		(Bedroom2, Lights)
+Switch Light_Bedroom2_BULB 		"Đèn Tròn" 			(Bedroom2, Lights)
+
+/* Door light*/
+Switch Light_Door 		"Đèn Cua" 		(Door, Lights) {mqtt="<[mymosquitto:OUT/21/2/0:state:MAP(switch.map)],>[mymosquitto:IN/21/4/0:command:ON:1],>[mymosquitto:IN/21/4/0:command:OFF:0]"}
+
+/* Water Switch*/
+Switch Water 		"Bom Nuoc" 		(gHome) {mqtt="<[mymosquitto:OUT/52/2/0:state:MAP(switch.map)],>[mymosquitto:IN/52/4/0:command:ON:1],>[mymosquitto:IN/52/4/0:command:OFF:0]"}
+
+
+/* Demo */
+String CommandString
+String VoiceCommand
+Number RemoteRF 		"Remote Button: [%d]" 			{mqtt="<[mymosquitto:RF:state:default]"}
+
+/* Scene */
+Number Scene_Light			"Scene"					<sofa>
+
+/* Indoor Temperatures */
+Number Humidity_Living 	"Độ Ẩm [%.1f %%]"	<temperature>	(Temperature, Living) {mqtt="<[mymosquitto:OUT/51/2/0:state:default]"}
+Number Temperature_Living 	"Nhiệt Độ [%.1f °C]"	<temperature>	(Temperature, Living) {mqtt="<[mymosquitto:OUT/51/2/1:state:default]"}
+Number Volt_Living 	"Pin [%.1f]"	<temperature>	(Temperature, Living) {mqtt="<[mymosquitto:OUT/51/2/2:state:default]"}
+DateTime Temp_LastUpdate		"Last Update [%1$ta %1$tR]"	<clock>
+
+/* Bedroom1 PIR */
+Number Volt_PIR1 	"Pin [%.1f]"	<temperature>	(Temperature, Bedroom1) {mqtt="<[mymosquitto:OUT/551/2:state:default]"}
+DateTime PIR1_LastUpdate		"Last Update [%1$ta %1$tR]"	<clock>
+
+/* Livingroom PIR */
+Number Volt_PIR2 	"Pin [%.1f]"	<temperature>	(Temperature, Bedroom1) {mqtt="<[mymosquitto:OUT/552/2:state:default]"}
+DateTime PIR2_LastUpdate		"Last Update [%1$ta %1$tR]"	<clock>
+
+/* Gas Sensor */
+Group    Sensors    "Sensors"    <shield>
+
+Number   Sensor_Gas  "Cảm Biến Gas [MAP(gas.map):%s]"    <shield> (Sensors) {mqtt="<[mymosquitto:OUT/53/2/0:state:default]"}
+

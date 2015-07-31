@@ -73,3 +73,51 @@
 		</div>
 	</body>
 </html>
+
+
+
+
+        <!-- Navigation -->
+        
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bell fa-fw"></i> eHome Control Center
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i> Temperature
+                            <span class="pull-right text-muted badge"> {{temp}} </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i> Humidity
+                            <span class="pull-right text-muted badge"> {{humid}} </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i> Battery
+                            <span class="pull-right text-muted badge"> {{voltage}} </span>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i> Last Updated
+                            <span class="pull-right text-muted badge"> {{lastUpdate}} </span>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /.list-group -->
+                    <div class="panel-heading">
+                        Line Chart Example
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <linechart xkey="xkey" ykeys="ykeys" labels="labels" data="myModel"></linechart>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->

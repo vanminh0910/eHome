@@ -1,5 +1,6 @@
 #include <RFM69.h>    //get it here: https://www.github.com/lowpowerlab/rfm69
 #include <SPI.h>
+#include <SPIFlash.h>
 #include <LowPower.h> //get library from: https://github.com/lowpowerlab/lowpower
                       //writeup here: http://www.rocketscream.com/blog/2011/07/04/lightweight-low-power-arduino-library/
 #include "Common.h"
@@ -33,7 +34,7 @@ DHT dht(DHTPIN, DHTTYPE);
 
 #define ONBOARD_LED     9  // Moteinos have LEDs on D9
 
-#define SERIAL_EN             //comment this out when deploying to an installed SM to save a few KB of sketch size
+//#define SERIAL_EN             //comment this out when deploying to an installed SM to save a few KB of sketch size
 #define SERIAL_BAUD    115200
 #ifdef SERIAL_EN
 #define DEBUG(input)   {Serial.print(input); delay(1);}
@@ -45,6 +46,8 @@ DHT dht(DHTPIN, DHTTYPE);
 
 
 byte msgBuf[MSG_BUF_SIZE];
+
+SPIFlash flash(5, 0); // flash(SPI_CS, MANUFACTURER_ID)  
 
 // RFM69 configuration
 RFM69 radio;
@@ -64,21 +67,34 @@ void setup() {
   char buff[50];
   sprintf(buff, "\neTemperature node starting. Working at %d Mhz...", FREQUENCY==RF69_433MHZ ? 433 : FREQUENCY==RF69_868MHZ ? 868 : 915);
   DEBUGln(buff);
-  pinMode(ONBOARD_LED, OUTPUT);
+  //pinMode(ONBOARD_LED, OUTPUT);
+  // No setup is required for this library
+  if (flash.initialize())   
+  {  
+      DEBUGln("Flash Init OK!");  
+      flash.sleep();          // put flash (if it exists) into low power mode  
+      DEBUGln("Flash sleep");  
+  }  
+  else   
+  {  
+      DEBUGln("Flash Init FAIL!");  
+  }  
+  radio.sleep();
 }
 
 void loop() {
   // Send status update
   sendUpdate();
   radio.sleep();
-  Serial.flush();
+  //Serial.flush();
+  //delay(5000);
     
   /* 
   Return to sleep state in 5 minutes
   ATmega328 can stay in sleep state longest 8 seconds. So, if we want ATmega328 
   sleep in 5 minutes (5 x 60 = 300 seconds), we need to loop 37 times.
   */
-  for(int i = 0; i < 4; i++)
+  for(int i = 0; i < 1; i++)
   {
     LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF); 
   }
@@ -123,13 +139,13 @@ void sendUpdate()
   DEBUG("Sending data to gateway (");
   DEBUG(sizeof(data));
   DEBUG(" bytes) ... ");
-  if (radio.sendWithRetry(GATEWAY_ID, (const void*)(&data), sizeof(data), RETRIES, ACK_TIME)) {
+  if (radio.sendWithRetry(GATEWAY_ID, (const void*)(&data), sizeof(data)), 0) {
     DEBUG(" Sent ok!");
   } else {
     DEBUG(" Sent failed...");
   }
   DEBUGln();
-  Blink(ONBOARD_LED, 100); 
+  Blink(ONBOARD_LED, 50); 
 }
 
 long readVcc() {

@@ -1,0 +1,30 @@
+Added Component: Designator=ProMini(Arduino Pro Mini)
+Added Pin To Net: NetName=D3 Pin=ProMini-1
+Added Pin To Net: NetName=D4 Pin=ProMini-2
+Added Pin To Net: NetName=GND Pin=ProMini-3
+Added Pin To Net: NetName=GND Pin=ProMini-3
+Added Pin To Net: NetName=VCC Pin=ProMini-6
+Added Pin To Net: NetName=VCC Pin=ProMini-6
+Added Pin To Net: NetName=D5 Pin=ProMini-9
+Added Pin To Net: NetName=D6 Pin=ProMini-10
+Added Pin To Net: NetName=D7 Pin=ProMini-11
+Added Pin To Net: NetName=D8 Pin=ProMini-12
+Added Pin To Net: NetName=D9 Pin=ProMini-13
+Added Pin To Net: NetName=D10 Pin=ProMini-14
+Added Pin To Net: NetName=MOSI Pin=ProMini-15
+Added Pin To Net: NetName=MISO Pin=ProMini-16
+Added Pin To Net: NetName=SCK Pin=ProMini-17
+Added Pin To Net: NetName=GND Pin=ProMini-21
+Added Pin To Net: NetName=GND Pin=ProMini-21
+Added Pin To Net: NetName=A0 Pin=ProMini-23
+Added Pin To Net: NetName=A1 Pin=ProMini-24
+Added Pin To Net: NetName=A2 Pin=ProMini-25
+Added Pin To Net: NetName=RST Pin=ProMini-29
+Added Pin To Net: NetName=RST Pin=ProMini-29
+Added Pin To Net: NetName=RXI Pin=ProMini-30
+Added Pin To Net: NetName=RXI Pin=ProMini-30
+Added Pin To Net: NetName=TX0 Pin=ProMini-31
+Added Pin To Net: NetName=TX0 Pin=ProMini-31
+Added Pin To Net: NetName=D2 Pin=ProMini-32
+Added Pin To Net: NetName=NetP1_2 Pin=ProMini-RAW
+Added Member To Class: ClassName=switchboard_schematic Member=Component ProMini

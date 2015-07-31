@@ -1,0 +1,103 @@
+﻿html,body{height:100%;}
+
+#page {
+    height:100%;
+}
+
+body { padding-top:10px; }
+.panel-body .btn:not(.btn-block) { width:120px;margin-bottom:10px; }
+
+/*!
+ * Bootstrap Docs (http://getbootstrap.com)
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under the Creative Commons Attribution 3.0 Unported License. For
+ * details, see http://creativecommons.org/licenses/by/3.0/.
+ */
+.dummy {
+    margin-top: 100%;
+}
+.thumbnail {
+    position: absolute;
+    top: 15px;
+    bottom: 0;
+    left: 15px;
+    right: 0;
+    text-align:center;
+    padding-top:calc(50% - 30px);
+}
+
+.dash {
+    text-align: center;
+    color: white;
+    margin:0.2em;
+    min-height: 150px;
+    max-height: 150px;
+}
+
+.dash-green {
+    background-color: green;
+}
+
+.dash-yellow {
+    background-color: yellow;
+    color: blue;
+}
+
+.dash-red {
+    background-color: red;
+}
+
+.dash-weather {
+    #background-image: url(../images/weather_background.jpg); height: 100%;
+    background-repeat: no-repeat;
+}
+
+
+.img_fit {
+    max-height:100%;
+    max-width:100%;
+}
+
+
+.date {
+    font-size: 20px;
+}
+
+.hour {
+    font-size: 50px;
+}
+
+@font-face {
+    font-family: 'weather';
+    src: url('https://dl.dropboxusercontent.com/u/2086809/weatherfont/artill_clean_icons-webfont.eot');
+    src: url('https://dl.dropboxusercontent.com/u/2086809/weatherfont/artill_clean_icons-webfont.eot?#iefix') format('embedded-opentype'),
+         url('https://dl.dropboxusercontent.com/u/2086809/weatherfont/artill_clean_icons-webfont.woff') format('woff'),
+         url('https://dl.dropboxusercontent.com/u/2086809/weatherfont/artill_clean_icons-webfont.ttf') format('truetype'),
+         url('https://dl.dropboxusercontent.com/u/2086809/weatherfont/artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.weather {
+    font-size: 50px;
+}
+
+/* Fix for Bootstrap 3 with Angular UI Bootstrap */
+
+.modal { 
+	display: block;
+}
+
+/* Custom dialog/modal headers */
+
+.dialog-header-error { background-color: #d2322d; }
+.dialog-header-wait { background-color: #428bca; }
+.dialog-header-notify { background-color: #eeeeee; }
+.dialog-header-confirm { background-color: #333333; }
+	.dialog-header-error span, .dialog-header-error h4,
+	.dialog-header-wait span, .dialog-header-wait h4,
+	.dialog-header-confirm span, .dialog-header-confirm h4 { color: #ffffff; }
+
+/* Ease Display */
+
+.pad { padding: 25px; }

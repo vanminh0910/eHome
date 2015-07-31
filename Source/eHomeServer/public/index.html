@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="eHomeApp" >
 
 <head>
 
@@ -9,18 +9,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>eHome System</title>
+    <title>eHome Control Center</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="content/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="content/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-
+    <link href="content/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- Morris Charts CSS -->
+    <link href="content/css/plugins/morris.css" rel="stylesheet">
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,49 +34,77 @@
 
 <body>
 
-    <div id="wrapper" ng-app="eHomeApp" ng-controller="indexController">
-
-        <!-- Navigation -->
-        
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-bell fa-fw"></i> eHome Control Center
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-comment fa-fw"></i> Temperature
-                            <span class="pull-right text-muted badge"> {{temp}} </span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-comment fa-fw"></i> Humidity
-                            <span class="pull-right text-muted badge"> {{humid}} </span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-comment fa-fw"></i> Battery
-                            <span class="pull-right text-muted badge"> {{voltage}} </span>
-                            </span>
-                        </a>                        
-                    </div>
-                    <!-- /.list-group -->
-                </div>
-                <!-- /.panel-body -->
+    <div class="container">
+        <div class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">eHome Control Center</a>
             </div>
-        <!-- /#page-wrapper -->
-
+            <div class="navbar-collapse collapse navbar-responsive-collapse" >
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="settings.devices">Devices</a></li>
+                            <li><a ui-sref="settings.room">Rooms</a></li>
+                            <li><a ui-sref="settings.music">Music</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div ui-view></div> 
     </div>
-    <!-- /#wrapper -->
+    <br />
+    
+    <footer class="container">
+        <p>Created by Minh Ha. 2015</p>
+    </footer>
+    
+    <script type="text/javascript" src="app/libs/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="app/libs/jquery-ui.js"></script>    
 
-    <!--<script type="text/javascript" src="http://localhost:8000/socket.io/socket.io.js"></script>-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/ui/1.8.20/jquery-ui.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-    <script src="js/angular-socket.js"></script>
+    <script type="text/javascript" src="app/libs/angular.js"></script>    
+    <script type="text/javascript" src="app/libs/angular-route.min.js"></script>
+    <script type="text/javascript" src="app/libs/angular-resource.min.js"></script>
+    <script type="text/javascript" src="app/libs/angular-animate.min.js"></script>
+    <script type="text/javascript" src="app/libs/ui-bootstrap-0.9.0.min.js"></script>
+    <script type="text/javascript" src="app/libs/ui-bootstrap-tpls-0.9.0.min.js"></script>
+    <script type="text/javascript" src="app/libs/angular-ui-router.js"></script>
+    <script type="text/javascript" src="app/libs/toaster.js"></script>
+    <script type="text/javascript" src="app/libs/loading-bar.min.js"></script>    
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="app/libs/angular-socket.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="app/libs/bootstrap.min.js"></script>
+    
+    
+    
+    <!-- Load app main script -->
+    <script src="app/app.js"></script>
+
+    <!-- Load services -->
+    
+    <!-- Morris Charts JavaScript -->
+    <script type="text/javascript" src="app/libs/raphael.min.js"></script>
+    <script type="text/javascript" src="app/libs/morris.js"></script>
+    <script type="text/javascript" src="app/libs/morris-data.js"></script>
+    <script type="text/javascript" src="app/libs/ngMorris.js"></script>
+    
+    <!-- Load custom directives -->
+    <script src="app/directives/morrisLineChartDirective.js"></script>
+    
+    <!-- Load controllers -->
+    <script src="app/controllers/dashboardController.js"></script>
+    <script src="app/controllers/viewGraphController.js"></script>
+
+    <!-- Load custom filters -->
+
     
     <script>
         /*
@@ -96,33 +126,13 @@
 				});
 			});
 		});
-        */
         
         var app = angular.module('eHomeApp', [ 'socket.io' ]);
         
         app.config(function ($socketProvider) {
-            $socketProvider.setConnectionUrl('http://localhost:8000');
+            $socketProvider.setConnectionUrl('http://localhost');
         });
-        
-        app.controller('indexController', function ($scope, $socket) {
-
-            $socket.on('update', function (data) {
-                console.log("Receive update data from server: ");
-                console.log(data);
-                //$scope.serverResponse = data;
-                //$socket.emit('clientUpdate', data);
-                $scope.temp = data.data2;
-                $scope.humid = data.data1;
-                $scope.voltage = data.data3;
-            });
-            
-            $scope.emitBasic = function emitBasic() {
-                console.log('echo event emited');
-                $socket.emit('echo', $scope.dataToSend);
-                $scope.dataToSend = '';
-            };
-
-         });
+        */
     </script>
 
 

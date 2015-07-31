@@ -1,0 +1,36 @@
+﻿<div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-md-offset-2">
+    <div id="messages" class="alert alert-dismissable alert-danger" data-ng-show="messages" data-ng-bind="messages"></div>
+    <form name="helpForm" novalidate role="form" ng-submit="submitCourse(helpForm)" class="form-horizontal">
+        <fieldset>
+            <legend>Add New Course</legend>
+            <div class="form-group" ng-class="{ 'has-error' : helpForm.name.$invalid && (!helpForm.name.$pristine || submitted) }">
+                <label for="name" class="col-lg-2 control-label">Name</label>
+                <div class="col-lg-10">
+                    <input type="text" data-ng-model="name" class="form-control" name="name" placeholder="Course Name" required ng-minlength="3" ng-maxlength="100">
+                    <p data-ng-show="helpForm.name.$invalid && (!helpForm.name.$pristine || submitted)" class="text-danger">Course name is required and less than 100 characters.</p>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : helpForm.image.$invalid && (!helpForm.image.$pristine || submitted) }">
+                <label for="image" class="col-lg-2 control-label">Image</label>
+                <div class="col-lg-10">
+                    <input type="text" data-ng-model="image" class="form-control" name="image" placeholder="Image Url" required>
+                    <p data-ng-show="helpForm.image.$invalid && (!helpForm.image.$pristine || submitted)" class="text-danger">Image URL is required.</p>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : helpForm.description.$invalid && (!helpForm.description.$pristine || submitted) }">
+                <label for="description" class="col-lg-2 control-label">Description</label>
+                <div class="col-lg-10">
+                    <textarea data-ng-model="description" class="form-control" rows="5" name="description" required></textarea>
+                    <p data-ng-show="helpForm.description.$invalid && (!helpForm.description.$pristine || submitted)" class="text-danger">Course description is required.</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+					<a href="#/course/list" role="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Cancel</a>
+					<button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-floppy-disk"></span> Create</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

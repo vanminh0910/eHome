@@ -1,0 +1,36 @@
+Removed Pin From Net: NetName=NetR4_2 Pin=U1-1
+Removed Pin From Net: NetName=NetR5_1 Pin=U1-6
+Added Component: Designator=R1(J1-0603)
+Added Component: Designator=R2(J1-0603)
+Added Component: Designator=R3(J1-0603)
+Added Component: Designator=R4(J1-0603)
+Added Component: Designator=R5(J1-0603)
+Added Component: Designator=R6(J1-0603)
+Added Pin To Net: NetName=NetP3_2 Pin=R1-2
+Added Pin To Net: NetName=D4 Pin=R2-1
+Added Pin To Net: NetName=NetP9_2 Pin=R3-2
+Added Pin To Net: NetName=D3 Pin=R4-1
+Added Pin To Net: NetName=NetR4_2 Pin=R4-2
+Added Pin To Net: NetName=NetR5_1 Pin=R5-1
+Added Pin To Net: NetName=NetP10_2 Pin=R5-2
+Added Pin To Net: NetName=D2 Pin=R6-1
+Added Pin To Net: NetName=NetR4_2 Pin=U2-1
+Added Pin To Net: NetName=NetR5_1 Pin=U3-6
+Added Pin To Net: NetName=NetR1_1 Pin=R1-1
+Added Pin To Net: NetName=NetR1_1 Pin=U1-6
+Added Net: Name=NetR1_1
+Added Pin To Net: NetName=NetR2_2 Pin=R2-2
+Added Pin To Net: NetName=NetR2_2 Pin=U1-1
+Added Net: Name=NetR2_2
+Added Pin To Net: NetName=NetR3_1 Pin=R3-1
+Added Pin To Net: NetName=NetR3_1 Pin=U2-6
+Added Net: Name=NetR3_1
+Added Pin To Net: NetName=NetR6_2 Pin=R6-2
+Added Pin To Net: NetName=NetR6_2 Pin=U3-1
+Added Net: Name=NetR6_2
+Added Member To Class: ClassName=switchboard_schematic Member=Component R1 Res3
+Added Member To Class: ClassName=switchboard_schematic Member=Component R2 Res3
+Added Member To Class: ClassName=switchboard_schematic Member=Component R3 Res3
+Added Member To Class: ClassName=switchboard_schematic Member=Component R4 Res3
+Added Member To Class: ClassName=switchboard_schematic Member=Component R5 Res3
+Added Member To Class: ClassName=switchboard_schematic Member=Component R6 Res3

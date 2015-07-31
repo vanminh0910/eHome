@@ -1,0 +1,20 @@
+﻿<div class="container">
+    <div class="col-xs-2 photoCaption" data-ng-repeat="sensor in sensors">
+        <img data-ng-src="" alt="Img" class="img-thumbnail" /><br />
+        <small><em> <span>{{sensor.name}} : {{sensor.value1}} / {{sensor.value2}}</span> </em></small>
+    </div>
+</div>
+<!--
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3" data-ng-repeat="sensor in sensors">
+            <a href="#" class="thumbnail">
+                <span>{{sensor.name}} : {{sensor.value1}} / {{sensor.value2}}</span>
+                <img src="/bootstrap/images/kittens.jpg" alt="Generic placeholder thumbnail">
+            </a>
+        </div>
+    </div>
+</div>
+
+-->

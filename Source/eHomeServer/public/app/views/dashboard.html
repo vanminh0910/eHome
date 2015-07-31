@@ -1,0 +1,77 @@
+﻿ <div class="panel panel-green">
+    <div class="panel-heading">
+        <a data-toggle="collapse" href="#addNodePanel">Add New Node</a>        
+    </div>
+    <div id="addNodePanel" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div class="col-xs-4">
+                <form role="form">
+                    <div class="form-group">
+                        <label>Node Name</label>
+                        <input class="form-control" ng-model="nodeName">
+                    </div>
+                    <div class="form-group">
+                        <label>Node ID</label>
+                        <input class="form-control" ng-model="nodeId">
+                    </div>
+                    <div class="form-group">
+                        <label>Data Field</label>
+                        <select class="form-control" ng-model="dataField">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Group</label>
+                        <select class="form-control" ng-model="group">
+                            <option ng-repeat="g in groups" ng-selected="{{g.id == group}}" value="{{g.id}}">{{g.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" ng-model="visible"> Visible
+                    </div>
+                    <button class="btn btn-default" ng-click="saveNode()">Save</button>
+                    <button class="btn btn-default">Cancel</button>
+                </form>
+                <!-- /.col-lg-6 (nested) -->            
+            </div>
+            <!-- /.row (nested) -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel-collapse -->
+</div>
+<!-- /.panel -->
+
+<div class="panel panel-green">
+    <div class="panel-heading">
+        Add New Node
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <div class="list-group">
+            <a ui-sref="viewGraph({nodeId:2, fieldId:1, min:25, max:40})" class="list-group-item">
+                <i class="fa fa-comment fa-fw"></i> Temperature
+                <span class="pull-right text-muted badge"> {{temp1}} </span>
+            </a>
+            <a ui-sref="viewGraph({nodeId:2, fieldId:2, min:40, max:100})" class="list-group-item">
+                <i class="fa fa-comment fa-fw"></i> Humidity
+                <span class="pull-right text-muted badge"> {{humid1}} </span>
+            </a>
+            <a ui-sref="viewGraph({nodeId:2, fieldId:4, min:2000, max:4000})" class="list-group-item">
+                <i class="fa fa-comment fa-fw"></i> Battery
+                <span class="pull-right text-muted badge"> {{volt1}} </span>
+                </span>
+            </a>
+            <a href="#" class="list-group-item">
+                <i class="fa fa-comment fa-fw"></i> Last Updated
+                <span class="pull-right text-muted badge"> {{lastUpdate}} </span>
+                </span>
+            </a>
+        </div>
+        <!-- /.list-group -->
+    </div>
+    <!-- /.panel-body -->
+</div>
