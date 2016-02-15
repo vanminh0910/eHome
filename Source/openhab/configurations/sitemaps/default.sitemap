@@ -1,0 +1,63 @@
+sitemap default label="Main Menu"
+{        
+    Frame label="Phòng Khách" {
+        Switch item=Light_Living_LED
+        Switch item=Light_Living_BULB
+        Switch item=Light_Living_SUB
+    }
+    
+    Frame label="Phòng Carrot" {
+        Text item=Bedroom1_Temp {
+            Frame {
+                Text item=Bedroom1_Temp_LastUpdate  valuecolor=[Bedroom1_Temp_LastUpdate>120="orange", Bedroom1_Temp_LastUpdate>300="red"]
+                Switch item=Chart_Period label="Chart Period" mappings=[0="Hour", 1="Day", 2="Week"]
+                
+                Image visibility=[Chart_Period==0, Chart_Period=="Uninitialized"] url="http://localhost:8080/chart?items=Bedroom1_Temp&period=h&service=mysql" label="Bedroom1_Temp"
+                
+                Image visibility=[Chart_Period==1] url="http://localhost:8080/chart?items=Bedroom1_Temp&period=D&service=mysql" label="Bedroom1_Temp"
+                
+                Image visibility=[Chart_Period==2] url="http://localhost:8080/chart?items=Bedroom1_Temp&period=W&service=mysql" label="Bedroom1_Temp"
+                
+                Image visibility=[Chart_Period==0, Chart_Period=="Uninitialized"] url="http://localhost:8080/chart?items=Bedroom1_Temp_Batt&period=h&service=mysql" label="Bedroom1_Temp_Batt"
+                
+                Image visibility=[Chart_Period==1] url="http://localhost:8080/chart?items=Bedroom1_Temp_Batt&period=D&service=mysql" label="Bedroom1_Temp_Batt"
+                
+                Image visibility=[Chart_Period==2] url="http://localhost:8080/chart?items=Bedroom1_Temp_Batt&period=W&service=mysql" label="Bedroom1_Temp_Batt"
+            }                
+        }
+        Text item=Bedroom1_Temp_Batt
+        Switch item=Light_Bedroom1_LED
+        Switch item=Light_Bedroom1_BULB
+    }
+    
+    Frame label="Phòng Ba Mẹ" {
+        Text item=Bedroom2_Temp {
+            Frame {
+                Text item=Bedroom2_Temp_LastUpdate  valuecolor=[Bedroom2_Temp_LastUpdate>120="orange", Bedroom2_Temp_LastUpdate>300="red"]
+                Switch item=Chart_Period label="Chart Period" mappings=[0="Hour", 1="Day", 2="Week"]
+                
+                Image visibility=[Chart_Period==0, Chart_Period=="Uninitialized"] url="http://localhost:8080/chart?items=Bedroom2_Temp&period=h&service=mysql" label="Bedroom2_Temp"
+                
+                Image visibility=[Chart_Period==1] url="http://localhost:8080/chart?items=Bedroom2_Temp&period=D&service=mysql" label="Bedroom2_Temp"
+                
+                Image visibility=[Chart_Period==2] url="http://localhost:8080/chart?items=Bedroom2_Temp&period=W&service=mysql" label="Bedroom2_Temp"
+                
+                Image visibility=[Chart_Period==0, Chart_Period=="Uninitialized"] url="http://localhost:8080/chart?items=Bedroom2_Temp_Batt&period=h&service=mysql" label="Bedroom2_Temp_Batt"
+                
+                Image visibility=[Chart_Period==1] url="http://localhost:8080/chart?items=Bedroom2_Temp_Batt&period=D&service=mysql" label="Bedroom2_Temp_Batt"
+                
+                Image visibility=[Chart_Period==2] url="http://localhost:8080/chart?items=Bedroom2_Temp_Batt&period=W&service=mysql" label="Bedroom2_Temp_Batt"
+            }                
+        }
+        Text item=Bedroom2_Temp_Batt
+        Switch item=Light_Bedroom2_LED
+        Switch item=Light_Bedroom2_BULB
+        Switch item=Light_Bedroom2_SUB
+    }
+    
+    Frame {
+        Group item=Media label="Phòng Media" icon="video"
+        Group item=Kitchen label="Bếp" icon="kitchen" 
+        Group item=Garden label="Ban Công" icon="garden" 
+    }
+}

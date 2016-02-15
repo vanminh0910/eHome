@@ -47,15 +47,16 @@ void setup() {
   sprintf(buff, "\nWorking at %d Mhz...", FREQUENCY==RF69_433MHZ ? 433 : FREQUENCY==RF69_868MHZ ? 868 : 915);
   DEBUGln(buff);
   pinMode(ONBOARD_LED, OUTPUT);
+  Blink(ONBOARD_LED, 1000);
 }
 
 void loop() {
   //process any serial input
   if (Serial.available() > 0) {
     getSerialLine(serialData);
-    Serial.println(serialData);
-    Serial.println(serialData[0]);
-    Serial.println(serialData[strlen(serialData)-1]);
+    //Serial.println(serialData);
+    //Serial.println(serialData[0]);
+    //Serial.println(serialData[strlen(serialData)-1]);
     if (serialData[0] == 'S' && serialData[strlen(serialData)-1] == 'E')
     {
       Serial.println("Enter serial processing");
@@ -84,7 +85,7 @@ void loop() {
       if (radio.sendWithRetry(nodeId, (const void*)(&data), sizeof(data)), RETRIES, ACK_TIME)
         Serial.println("Sent ok!");
       else Serial.println("Sent failed...");
-      Blink(ONBOARD_LED, 100);
+      Blink(ONBOARD_LED, 300);
     }
   }
 
@@ -104,13 +105,6 @@ void loop() {
       //}
       Serial.println();
       data = *(Payload*)radio.DATA; //assume radio.DATA actually contains our struct and not something else
-      //Serial.print("Node Id="); Serial.println(data.nodeId);
-      //for(int i=0; i<4; i++) {
-        //Serial.print(" data "); Serial.print(i); Serial.print(" = ");
-        //Serial.println(data.data1[i]);
-      //}
-      //Serial.print("Data 2 = "); Serial.println(data.data2);
-      //Serial.print("Data 3 = "); Serial.println(data.data3);
       // Send data to Raspberry Pi via serial communication      
       Serial.print("S;"); //start message
       Serial.print(data.nodeId);Serial.print(";");
@@ -120,7 +114,7 @@ void loop() {
       }
       Serial.println("E"); //end message
     }
-    Blink(ONBOARD_LED,100);
+    Blink(ONBOARD_LED,300);
   }
 }
 

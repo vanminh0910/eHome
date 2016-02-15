@@ -16,17 +16,16 @@ written by Minh Ha 2015
 #define ENCRYPTKEY    "eHomeEncryptKey" //exactly the same 16 characters/bytes on all nodes!
 
 #define ACK_TIME      90 // max # of ms to wait for an ack
+
 #define RETRIES  2
 
-#define MSG_BUF_SIZE 13   // message buffer size: 1-byte NODEID + 4-bytes + 4-bytes for int + 4-bytes for float
+#define MSG_BUF_SIZE 18   // message buffer size: 2-byte NODEID + 4x4-bytes for float
 
 #define SERIAL_BUF_SIZE 50   // message buffer size for reading serial input
 
 typedef struct {		
-  byte nodeId; //store this nodeId
-  byte data1[4];
-  float data2;
-  float data3;
+  int nodeId; //store this nodeId
+  float data[4];
 } Payload;
 
 #endif

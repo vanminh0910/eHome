@@ -1,6 +1,6 @@
 avrdude -P COM10 -b 19200 -c avrisp -p m328p -v
 avrdude -P COM10 -b 19200 -c avrisp -p m328p -U efuse:w:0x06:m
-avrdude -P COM10 -b 19200 -c avrisp -p m328p -C ..\etc\avrdude.conf -U lfuse:w:0xff:m -U hfuse:w:0xde:m -U efuse:w:0x05:m
+avrdude -P COM10 -b 19200 -c avrisp -p m328p -U lfuse:w:0xff:m -U hfuse:w:0xde:m -U efuse:w:0x05:m
 
 Low battery measurement: https://code.google.com/p/tinkerit/wiki/SecretVoltmeter
 
@@ -15,4 +15,4 @@ avrdude -P usb -b 19200 -c stk500v2 -p m328p -vv
 
 avrdude -c arduino -p m328p -P COM12 -b 19200 -v
 avrdude -c arduino -p m328p -P COM12 -b 19200 -U flash:w:boot.hex:i -U efuse:w:0xFD:m -U hfuse:w:0xDC:m -U lfuse:w:0xDE:m -U lock:w:0x0F:m
-avrdude -c usbasp -p m328p -P usb -b 115200 -U flash:w:boot.hex:i -U efuse:w:0xFD:m -U hfuse:w:0xDC:m -U lfuse:w:0xDE:m -U lock:w:0x0F:m
+avrdude -c usbasp -p m328p -P usb -b 115200 -U flash:w:boot.hex:i -U efuse:w:0xFD:m -U hfuse:w:0xDC:m -U lfuse:w:0xDE:m     

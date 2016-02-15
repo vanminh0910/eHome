@@ -5,39 +5,108 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-//var routes = require('./routes/index');
-//var users = require('./routes/users');
+// *************** configure MQTT ********************
+var mqtt    = require('mqtt');
+//var mqttClient  = mqtt.connect('mqtt://test.mosquitto.org');
+var mqttClient  = mqtt.connect('mqtt://localhost');
+var mqttTopicTagIn = 'eHome/IN/';
+var mqttTopicTagOut = 'eHome/OUT/';
 
-
-// *************** configure database ********************
-var historyDatabaseUrl = "data/historyData.db"; 
-var currentDatabaseUrl = "data/currentData.db"; 
-var nodeDataDatabaseUrl = "data/nodeData.db"; 
-var groupsDatabaseUrl = "data/groups.db"; 
-var nodesDatabaseUrl = "data/nodes.db"; 
-var Datastore = require('nedb');
-db = {};
-//db.users = new Datastore({ filename: databaseUrl, autoload: true }); // to autoload datastore
-db.historyData = new Datastore({ filename: historyDatabaseUrl, autoload: true }); // to autoload datastore
-db.currentData = new Datastore({ filename: currentDatabaseUrl, autoload: true }); // to autoload datastore
-db.nodeData = new Datastore({ filename: nodeDataDatabaseUrl, autoload: true }); // to autoload datastore
-db.groups = new Datastore({ filename: groupsDatabaseUrl, autoload: true }); // to autoload datastore
-db.nodes = new Datastore({ filename: nodesDatabaseUrl, autoload: true }); // to autoload datastore
-
-//enable database compact hourly
-db.historyData.persistence.setAutocompactionInterval(3600000); //3600000
-db.currentData.persistence.setAutocompactionInterval(3600000);
-db.nodeData.persistence.setAutocompactionInterval(3600000);
-db.groups.persistence.setAutocompactionInterval(3600000);
-db.nodes.persistence.setAutocompactionInterval(3600000);
-
-// *************** configure serial connection information ********************
-var serial_enabled = true;
+//var serialEnabled = false;
+var serialEnabled = true;
 var serialport = require("serialport");
 var SerialPort = serialport.SerialPort; // localize object constructor 
+var serialPort;
 //var portName = 'COM14';
 var portName = '/dev/ttyAMA0';
 var baudrate = 115200;
+
+
+mqttClient.on('connect', function () {
+    mqttClient.subscribe(mqttTopicTagIn + '#');
+    //mqttClient.publish(mqttTopicTag + '3/1', '25.5');
+});
+ 
+mqttClient.on('message', function (topic, message) {
+    // message is Buffer 
+    var topicStr = topic.toString();
+    console.log('Received new MQTT message:    ' + topicStr + ':' + message.toString());
+    var nodeData = topicStr.substring(
+        topicStr.indexOf(mqttTopicTagIn) + mqttTopicTagIn.length).split('/');
+    if (nodeData.length != 2) {
+        console.log("Topic is invalid");
+        return;
+    }
+    
+    var serialMessage = 'S;' + nodeData[0];
+    for (var i=1; i<5; i++) {
+        if (i == parseInt(nodeData[1]))
+            serialMessage += ';' + message.toString();
+        else
+            serialMessage += ';-1';
+    }
+    
+    serialMessage += ';E\n';
+    
+    console.log('Serial message: ' + serialMessage);
+    
+    if (serialEnabled) {
+        serialPort.write(serialMessage, function(err, results) {
+            if (err != null)
+                console.log('Error when writing to Serial port. Error: ' + err);
+        });
+    }
+    
+});
+
+// *************** configure serial processing  ********************
+var processSerialInput = function (cleanData) {
+    // parse data and save to DB
+    var dataArray = cleanData.split(";");
+    var nodeId = parseInt(dataArray[0]);
+    
+    for(var index=1; index<=4; index++) {
+        var data = parseFloat(dataArray[index]).toString();
+        if (data == -1)
+            continue;
+            
+        // publish to MQTT server
+        console.log('Publishing to MQTT server. Topic: '
+            + mqttTopicTagOut + nodeId + '/' + index + '. Message: ' + data);
+        mqttClient.publish(mqttTopicTagOut + nodeId + '/' + index, data);        
+    }
+}
+
+var cleanData = ''; // this stores the clean data
+
+if (serialEnabled) {
+    
+    serialPort = new SerialPort(portName, {
+        baudrate: baudrate,
+        parser: serialport.parsers.readline("\n")
+    });
+
+    serialPort.on("open", function () {
+        console.log('Serial open successfully');
+        serialPort.on('data', function(data) {
+            console.log('Data received: ' + data);
+            if (data.indexOf("S;") == 0 && data.indexOf(";E") >= 0) {
+                cleanData = data.substring(data.indexOf("S;") + 2, data.indexOf(";E"));
+                processSerialInput(cleanData);
+            }
+        });
+        
+        serialPort.write('AAAAAAAAAAAAAAAAAAAAAAAAaA\n', function(err, results) {
+            if (err != null)
+                console.log('Error when writing to Serial port. Error: ' + err);
+        });
+        
+        serialPort.write('BBBBBBBBBBBBBBBBB\n', function(err, results) {
+            if (err != null)
+                console.log('Error when writing to Serial port. Error: ' + err);
+        });
+    });
+}
 
 // *************** configure express ********************
 var app = express();
@@ -53,58 +122,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-//app.use('/', routes);
-//app.use('/users', users);
-
-// *************** data APIs ********************
-// init test data
-if (false) {
-
-    for (var j=1; j<900; j++) {
-        var d = new Date(1433721600000 + j*300000);
-        
-        // temp data
-        var record1 = {
-            nodeId: 2,
-            index: 1,
-            data: Math.floor((Math.random() * 5) + 30),
-            date: d
-        };
-        
-        // humidity data
-        var record2 = {
-            nodeId: 2,
-            index: 2,
-            data: Math.floor((Math.random() * 20) + 60),
-            date: d
-        };
-        
-        // on off
-        var record3 = {
-            nodeId: 2,
-            index: 3,
-            data: Math.floor((Math.random() * 2) + 0),
-            date: d
-        };
-        
-        // voltage
-        var record4 = {
-            nodeId: 2,
-            index: 4,
-            data: Math.floor((Math.random() * 2000) + 3000),
-            date: d
-        };
-
-        db.nodeData.insert([record1, record2, record3, record4],
-            function(err, saved) { // Query in NeDB via NeDB Module
-                if( err || !saved )
-                    console.log( "Node data not saved"); 
-               else console.log( "Node data saved");
-           }
-        );
-    }    
-}
 
 app.get('/api/getCurrentData', function(req, res) {
     db.currentData.find({ }, function (err, docs) {
@@ -222,18 +239,6 @@ app.use(function(err, req, res, next) {
 var http = require('http').Server(app);
 var io = require('socket.io')(http); // server listens for socket.io communication at port 8000
 
-//module.exports = app;
-/*
-var server = app.listen(3000, function () {
-
-  var host = server.address().address;
-  var port = server.address().port;
-
-  console.log('Example app listening at http://%s:%s', host, port);
-
-});
-*/
-
 http.listen(3000, function(){
   console.log('listening on *:3000');
 });
@@ -253,119 +258,6 @@ io.on('connection', function (socket) {
         console.log('disconnected');
     });
 });
-
-// *************** configure serial events ********************
-
-var processSerialInput = function (cleanData) {
-    console.log(cleanData);
-    // parse data and save to DB
-    var dataArray = cleanData.split(";");
-    var nodeId = parseInt(dataArray[0]);
-    console.log("Data splitted is ");
-    console.log(dataArray);
-    var date = new Date();
-    for(var index=1; index<=4; index++) {
-        var data = parseFloat(dataArray[index]);
-        if (data == -1)
-            continue;
-        var record = {
-            nodeId: nodeId,
-            index: index,
-            data: data,
-            date: date
-        };
-        
-        db.nodeData.insert([record],
-            function(err, saved) { // Query in NeDB via NeDB Module
-                if( err || !saved )
-                    console.log( "Node " + nodeId + " data index " + index + " not saved"); 
-               else 
-                   console.log( "Node " + nodeId + " data index " + index + " saved"); 
-           }
-        );
-        
-        db.currentData.remove({ nodeId: nodeId , index: index}, {}, function (err, numRemoved) {
-            if (!err)
-                console.log("Removed last data");
-            else
-                console.log("Cannot remove last data: " + err);
-        });
-        
-        db.currentData.insert([record], function (err, saved) {
-            if( err || !saved )
-                console.log( "Current data not saved"); 
-           else console.log( "Current data saved");
-        });
-        io.sockets.emit('update', record);
-    }
-}
-
-var cleanData = ''; // this stores the clean data
-
-if (serial_enabled) {
-    
-    var serialPort = new SerialPort(portName, {
-        baudrate: baudrate,
-        parser: serialport.parsers.readline("\n")
-    });
-
-    serialPort.on("open", function () {
-        console.log('Serial open successfully');
-        serialPort.on('data', function(data) {
-            console.log('Date: ' + new Date());
-            console.log('Data received: ' + data);
-            //io.sockets.emit('message', data);
-            //readData += data.toString(); // append data to buffer
-            if (data.indexOf("S;") >= 0 && data.indexOf(";E") >= 0) {
-                cleanData = data.substring(data.indexOf("S;") + 2, data.indexOf(";E"));
-                processSerialInput(cleanData);
-                /*
-                // parse data and save to DB
-                var dataArray = cleanData.split(";");
-                var nodeId = parseInt(dataArray[1]);
-                var date = new Date();
-                for(var index=1; index<=4; index++) {
-                    var record = {
-                        nodeId: nodeId,
-                        index: index,
-                        data: parseFloat(dataArray[index+1]),
-                        date: date
-                    };
-                    
-                    db.nodeData.insert([record],
-                        function(err, saved) { // Query in NeDB via NeDB Module
-                            if( err || !saved )
-                                console.log( "Node " + nodeId + " data index " + index + " not saved"); 
-                           else 
-                               console.log( "Node " + nodeId + " data index " + index + " saved"); 
-                       }
-                    );
-                    
-                    db.currentData.remove({ nodeId: nodeId , index: index}, {}, function (err, numRemoved) {
-                        if (!err)
-                            console.log("Removed last data");
-                        else
-                            console.log("Cannot remove last data: " + err);
-                    });
-                    
-                    db.currentData.insert([record], function (err, saved) {
-                        if( err || !saved )
-                            console.log( "Current data not saved"); 
-                       else console.log( "Current data saved");
-                    });
-                    io.sockets.emit('update', record);
-                }
-                */
-            }
-        });
-      /*
-      serialPort.write("ls\n", function(err, results) {
-        console.log('err ' + err);
-        console.log('results ' + results);
-      });
-      */
-    });
-}
 
 var getLastWeek = function (){
     var today = new Date();

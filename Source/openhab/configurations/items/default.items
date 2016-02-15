@@ -1,0 +1,37 @@
+Group All
+Group Living "Phòng Khách" <sofa> (All)
+Group Kitchen "Phòng Bếp" <kitchen> (All)
+Group Garden "Ban Công" <garden> (All)
+Group Bedroom1 "Phòng Carrot" <bedroom> (All)
+Group Bedroom2 "Phòng Ba Mẹ" <bedroom> (All)
+Group Media "Phòng Media" <video> (All)
+
+Group Temp 	(All)
+Group Battery 	(All)
+Group Lights 	(All)
+
+Number Bedroom1_Temp "Nhiệt Độ [%.1f C]" <temperature> (Bedroom1, Temp, Temp_Chart1) {mqtt="<[mymosquitto:eHome/OUT/2/1:state:default]"}
+Number Bedroom1_Temp_Batt "Pin [%.1f mAh]" <energy> (Bedroom1, Battery, Temp_Chart1) {mqtt="<[mymosquitto:eHome/OUT/2/4:state:default]"}
+DateTime Bedroom1_Temp_LastUpdate		"Last Update [%1$ta %1$tR]"	<clock>
+Number Chart_Period		"Chart Period [%.1f]"
+Group Temp_Chart1
+
+
+Number Bedroom2_Temp "Nhiệt Độ [%.1f C]" <temperature> (Bedroom2, Temp, Temp_Chart2) {mqtt="<[mymosquitto:eHome/OUT/3/1:state:default]"}
+Number Bedroom2_Temp_Batt "Pin [%.1f mAh]" <energy> (Bedroom2, Battery, Temp_Chart2) {mqtt="<[mymosquitto:eHome/OUT/3/4:state:default]"}
+DateTime Bedroom2_Temp_LastUpdate		"Last Update [%1$ta %1$tR]"	<clock>
+Group Temp_Chart2
+
+Switch	Light_Living_LED	"Đèn Chính"	(Living, Lights)		{ mqtt="<[mymosquitto:eHome/OUT/999/1:state:MAP(switch.map)],>[mymosquitto:eHome/IN/999/1:command:ON:1],>[mymosquitto:eHome/IN/999/1:command:OFF:0]" }
+Switch	Light_Living_BULB	"Đèn Tròn"	(Living, Lights)		{ mqtt="<[mymosquitto:eHome/OUT/999/2:state:MAP(switch.map)],>[mymosquitto:eHome/IN/999/2:command:ON:1],>[mymosquitto:eHome/IN/999/2:command:OFF:0]" }
+Switch	Light_Living_SUB	"Đèn Hắt"	(Living, Lights)		{ mqtt="<[mymosquitto:eHome/OUT/999/3:state:MAP(switch.map)],>[mymosquitto:eHome/IN/999/3:command:ON:1],>[mymosquitto:eHome/IN/999/3:command:OFF:0]" }
+
+
+
+Switch	Light_Bedroom1_LED	"Đèn Chính"	(Bedroom1, Lights)		{ mqtt="<[mymosquitto:eHome/OUT/22/1:state:MAP(switch.map)],>[mymosquitto:eHome/IN/22/1:command:ON:1],>[mymosquitto:eHome/IN/22/1:command:OFF:0]" }
+Switch	Light_Bedroom1_BULB	"Đèn Tròn"	(Bedroom1, Lights)		{ mqtt="<[mymosquitto:eHome/OUT/22/2:state:MAP(switch.map)],>[mymosquitto:eHome/IN/22/2:command:ON:1],>[mymosquitto:eHome/IN/22/2:command:OFF:0]" }
+
+
+Switch	Light_Bedroom2_LED	"Đèn Chính"	(Bedroom2, Lights)		{ mqtt="<[mymosquitto:23/1:state:MAP(switch.map)],>[mymosquitto:eHome/IN/23/1:command:ON:1],>[mymosquitto:eHome/IN/23/1:command:OFF:0]" }
+Switch	Light_Bedroom2_BULB	"Đèn Tròn"	(Bedroom2, Lights)		{ mqtt="<[mymosquitto:23/2:state:MAP(switch.map)],>[mymosquitto:eHome/IN/23/2:command:ON:1],>[mymosquitto:eHome/IN/23/2:command:OFF:0]" }
+Switch	Light_Bedroom2_SUB	"Đèn Hắt"	(Bedroom2, Lights)		{ mqtt="<[mymosquitto:23/3:state:MAP(switch.map)],>[mymosquitto:eHome/IN/23/3:command:ON:1],>[mymosquitto:eHome/IN/23/3:command:OFF:0]" }

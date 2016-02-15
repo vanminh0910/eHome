@@ -11,7 +11,7 @@
 //*********************************************************************************************
 // *********** IMPORTANT SETTINGS - YOU MUST CHANGE/CONFIGURE TO FIT YOUR HARDWARE *************
 //*********************************************************************************************
-#define NODE_ID        4    //unique for each node on same network
+#define NODE_ID        3    //unique for each node on same network
 
 //Match frequency to the hardware version of the radio on your Moteino (uncomment one):
 //#define IS_RFM69HW    //uncomment only for RFM69HW! Remove/comment if you have RFM69W!
@@ -107,22 +107,25 @@ void sendUpdate()
   sensors.requestTemperatures(); // Send the command to get temperatures
 
   DEBUGln("Temperature for Device 1 is: ");
-  float t = sensors.getTempCByIndex(0);
-  DEBUGln(t);
-
-  // Check if any reads failed and exit early (to try again).
-  /*
-  if (isnan(t)) {
-    DEBUGln("Failed to read from sensor!");
-    return;
+  float temparature = 0;
+  float temp = 0;
+  for (int i=0; i<5; i++) {
+    temp = sensors.getTempCByIndex(0);
+    if (isnan(temp)) {
+      DEBUGln("Failed to read from sensor!");
+      return;
+    }
+    temparature += temp;
+    delay(50);
   }
-  */
+  temparature = temparature/5;
+  DEBUGln(temparature);
   
   checkBattery();
 
   // Build the data payload and send to gateway
   data.nodeId = NODE_ID;
-  data.data[0] = t;
+  data.data[0] = temparature;
   data.data[1] = -1;
   data.data[2] = -1;
   data.data[3] = batteryVolts;
