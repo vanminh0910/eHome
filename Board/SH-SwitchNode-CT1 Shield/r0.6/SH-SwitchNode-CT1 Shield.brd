@@ -168,6 +168,9 @@ VCC LED1 LED2 LED3</text>
 <text x="88.9" y="54.61" size="5.08" layer="25" font="vector" ratio="20" rot="R90">3</text>
 <circle x="67.31" y="57.15" radius="6.750140625" width="0.762" layer="25"/>
 <circle x="86.36" y="57.15" radius="6.750140625" width="0.762" layer="25"/>
+<circle x="48.26" y="57.15" radius="9.144" width="0.762" layer="25"/>
+<circle x="67.31" y="57.15" radius="9.144" width="0.762" layer="25"/>
+<circle x="86.36" y="57.15" radius="9.144" width="0.762" layer="25"/>
 </plain>
 <libraries>
 <library name="adafruit">
