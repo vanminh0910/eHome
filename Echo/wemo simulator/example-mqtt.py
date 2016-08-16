@@ -32,7 +32,7 @@ class light_handler(debounce_handler):
         print new_state
         print state
         if client_address == ECHO_LIVINGROOM:
-            self.mqtt.publish("/D1/CMD/1", new_state)
+            self.mqtt.publish("/D1/CMD/2", new_state)
             print "Published to living room"
         elif client_address == ECHO_KITCHEN:
             self.mqtt.publish("kitchen", state)
