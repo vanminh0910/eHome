@@ -1,5 +1,0 @@
-wifi.setmode(wifi.STATION)
-wifi.sta.config("ssid","secret")
-tmr.alarm(0, 2000, 0, function()
-    dofile("mqtt.lc")
-end)
