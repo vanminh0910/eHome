@@ -9,32 +9,32 @@ import time
 logging.basicConfig(level=logging.DEBUG)
 
 DEVICES = {
-    "living light": {
+    "first light": {
         'port': 52002,
-        'on_command_topic': '/D1/CMD/2',
+        'on_command_topic': '/easytech.vn/LivingRoom/Light1/Command',
         'on_command_message': '1',
-        'off_command_topic': '/D1/CMD/2',
+        'off_command_topic': '/easytech.vn/LivingRoom/Light1/Command',
         'off_command_message': '0',
     },
-    "living led": {
-        'port': 52004,
-        'on_command_topic': '/D1/CMD/1',
-        'on_command_message': '1',
-        'off_command_topic': '/D1/CMD/1',
-        'off_command_message': '0',
-    },
-    "kitchen light": {
+    "second light": {
         'port': 52003,
-        'on_command_topic': '/D1/CMD/4',
+        'on_command_topic': '/easytech.vn/LivingRoom/Light2/Command',
         'on_command_message': '1',
-        'off_command_topic': '/D1/CMD/4',
+        'off_command_topic': '/easytech.vn/LivingRoom/Light2/Command',
         'off_command_message': '0',
     },
-    "kitchen led": {
-        'port': 52005,
-        'on_command_topic': '/D1/CMD/3',
+    "kitchen first light": {
+        'port': 52004,
+        'on_command_topic': '/easytech.vn/LivingRoom/Light3/Command',
         'on_command_message': '1',
-        'off_command_topic': '/D1/CMD/3',
+        'off_command_topic': '/easytech.vn/LivingRoom/Light3/Command',
+        'off_command_message': '0',
+    },
+    "kitchen second light": {
+        'port': 52005,
+        'on_command_topic': '/easytech.vn/LivingRoom/Light4/Command',
+        'on_command_message': '1',
+        'off_command_topic': '/easytech.vn/LivingRoom/Light4/Command',
         'off_command_message': '0',
     },
     "TV": {
@@ -51,7 +51,7 @@ DEVICES = {
         'off_command_topic': '/IR1/2',
         'off_command_message': '0',
     },
-    "living fan": {
+    "fan": {
         'port': 52008,
         'on_command_topic': '/IR1/3',
         'on_command_message': '1',
@@ -60,7 +60,7 @@ DEVICES = {
     },
 }
 # ---------- Network constants -----------
-MQTT_HOST = "192.168.1.110"
+MQTT_HOST = "192.168.43.55"
 MQTT_PORT = 1883
 
 # ---------- Device callback functions ----------
